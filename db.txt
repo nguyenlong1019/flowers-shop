@@ -1,0 +1,31 @@
+NodeJS cho backend
+ReactJS cho frontend 
+MySQL: cho database
+
+users: id, username, email, password, role (lưu trữ thông tin người dùng)
+flowers: id, name, category_id, price, image, description (lưu trữ thông tin về hoa)
+orders: id, user_id, total_price, status, created_at, ... (lưu trữ thông tin đơn hàng)
+order_items: order_id, flower_id, quantity, price (lưu thông tin chi tiết từng mặt hàng trong đơn hàng)
+categories: id, name (lưu trữ danh mục sản phẩm)
+
+Server:
+controllers: Xử lý logic các API, handle request và trả về response 
+models: Các file model tương ứng với các bảng trong cơ sở dữ liệu 
+routes: Định nghĩa các route API (url) 
+middlewares: Chứa các middleware ví dụ xác thực JWT 
+app.js: file server express 
+config.js: cấu hình database 
+
+Client: 
+components: Các components nhỏ trên UI như Button, Input, Modal, Header 
+pages: Các trang chính như Home, Shop, ProductDetail, Cart, Checkout, Login, Register 
+redux: Nếu sử dụng redux để quản lý state 
+services: Chứa các hàm gọi API 
+App.js: file chính của ứng dụng 
+index.js: Khởi tạo ứng dụng 
+
+Server cần CORS cho phép request từ FE to BE 
+State Management: Quản lý thông tin giỏ hàng, đăng nhập của người dùng 
+Responsive Design: Thiết kế giao diện thân thiện ng dùng di động
+
+
