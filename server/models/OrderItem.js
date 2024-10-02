@@ -6,13 +6,13 @@ const OrderItem = {
         [orderItemData.order_id, orderItemData.flower_id, orderItemData.quantity, orderItemData.price], callback);
     },
 
-    findOrderById: (orderId, callback) => {
+    findByOrderId: (orderId, callback) => {
         db.query(`SELECT * FROM order_items WHERE order_id = ?`, [orderId], callback);
     },
 
-    update: (orderId, flowerId, orderItemData, callback) => {
-        db.query(`UPDATE order_items SET quantity = ?, price = ? WHERE order_id = ? AND flower_id = ?`,
-        [orderItemData.quantity, orderItemData.price, orderId, flowerId], callback);
+    update: (orderItemId, orderItemData, callback) => {
+        db.query(`UPDATE order_items SET quantity = ?, price = ? WHERE id = ?`,
+        [orderItemData.quantity, orderItemData.price, orderItemId], callback);
     },
 
     delete: (orderItemId, callback) => {

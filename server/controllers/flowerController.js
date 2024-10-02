@@ -1,9 +1,9 @@
 const Flower = require('../models/Flower');
 
 exports.createFlower = (req, res) => {
-    const {name, description, price, image} = req.body;
+    const {name, category_id, description, price, image} = req.body;
 
-    Flower.create({name, description, price, image}, (err, result) => {
+    Flower.create({name, category_id, description, price, image}, (err, result) => {
         if (err) return res.status(500).send(err);
 
         res.send({message: "Flower created successfully!"});
@@ -31,9 +31,9 @@ exports.getFlowerById = (req, res) => {
 
 exports.updateFlower = (req, res) => {
     const flowerId = req.params.id; 
-    const {name, description, price, image} = req.body;
+    const {name, category_id, description, price, image} = req.body;
 
-    Flower.update(flowerId, {name, description, price, image}, (err, result) => {
+    Flower.update(flowerId, {name, category_id, description, price, image}, (err, result) => {
         if (err) return res.status(500).send(err);
         res.send({message: "Flower updated successfully!"});
     });

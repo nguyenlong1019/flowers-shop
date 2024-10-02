@@ -2,8 +2,8 @@ const db = require('../config');
 
 const Flower = {
     create: (flowerData, callback) => {
-        db.query(`INSERT INTO flowers (name, description, price, image) VALUES (?, ?, ?, ?)`,
-        [flowerData.name, flowerData.description, flowerData.price, flowerData.image]);
+        db.query(`INSERT INTO flowers (name, category_id, description, price, image) VALUES (?, ?, ?, ?, ?)`,
+        [flowerData.name, flowerData.category_id, flowerData.description, flowerData.price, flowerData.image], callback);
     },
 
     findAll: (callback) => {
@@ -15,8 +15,8 @@ const Flower = {
     },
 
     update: (flowerId, flowerData, callback) => {
-        db.query(`UPDATE flowers SET name = ?, description = ?, price = ?, image = ? WHERE id = ?`,
-        [flowerData.name, flowerData.description, flowerData.price, flowerData.image, flowerId], callback);
+        db.query(`UPDATE flowers SET name = ?, category_id = ?, description = ?, price = ?, image = ? WHERE id = ?`,
+        [flowerData.name, flowerData.category_id, flowerData.description, flowerData.price, flowerData.image, flowerId], callback);
     },
 
     delete: (flowerId, callback) => {
