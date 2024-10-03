@@ -1,6 +1,12 @@
+$primaryColor: #E72463;
+
+
 .app {
     font-family: "Poppins", sans-serif;
     color: #000;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 
     .container {
         width: 1140px;
@@ -20,7 +26,51 @@
         padding: 0 50px;
 
         .navbar {
-            
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .logo {
+                img {
+                    width: 125px;
+                    height: auto;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+            .links {
+                a {
+                    display: inline-block;
+                    padding: 38px 16px;
+                    font-size: 15px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    line-height: 18px;
+                    transition: .3s all;
+                }
+
+                a.active {
+                    color: $primaryColor;
+                }
+
+                a:hover {
+                    color: $primaryColor;
+                }
+            }
+
+            .actions {
+                display: flex;
+                align-items: center;
+
+                a {
+                    display: inline-block;
+                    font-size: 15px;
+                    line-height: 18px;
+                    font-weight: 500;
+                    padding: 0 16px;
+                }
+            }
         }
     }
 }
