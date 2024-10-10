@@ -1,6 +1,6 @@
-const Order = require('../models/Order');
+import Order from '../models/Order.js';
 
-exports.createOrder = (req, res) => {
+const createOrder = (req, res) => {
     const {user_id, total_price, status} = req.body;
     Order.create({user_id, total_price, status}, (err, result) => {
         if (err) return res.status(500).send(err);
@@ -9,7 +9,7 @@ exports.createOrder = (req, res) => {
     });
 };
 
-exports.getAllOrders = (req, res) => {
+const getAllOrders = (req, res) => {
     Order.findAll((err, orders) => {
         if (err) return res.status(500).send(err);
 
@@ -17,7 +17,7 @@ exports.getAllOrders = (req, res) => {
     });
 };
 
-exports.getOrderById = (req, res) => {
+const getOrderById = (req, res) => {
     const orderId = req.params.id;
 
     Order.findById(orderId, (err, order) => {
@@ -26,7 +26,7 @@ exports.getOrderById = (req, res) => {
     });
 };
 
-exports.updateOrder = (req, res) => {
+const updateOrder = (req, res) => {
   const orderId = req.params.id;
   const { total_price, status } = req.body;
 
@@ -36,7 +36,7 @@ exports.updateOrder = (req, res) => {
   });
 };
 
-exports.deleteOrder = (req, res) => {
+const deleteOrder = (req, res) => {
   const orderId = req.params.id;
   
   Order.delete(orderId, (err, result) => {
@@ -44,3 +44,5 @@ exports.deleteOrder = (req, res) => {
     res.send({ message: "Order deleted successfully!" });
   });
 };
+
+export {createOrder, getAllOrders, getOrderById, updateOrder, deleteOrder};

@@ -1,4 +1,4 @@
-const db = require('../config');
+import db from '../config.js';
 
 const User = {
     create: (userData, callback) => {
@@ -32,4 +32,4 @@ const User = {
     }
 };
 
-module.exports = User;
+export default User;

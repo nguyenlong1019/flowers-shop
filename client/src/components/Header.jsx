@@ -21,6 +21,9 @@ const Header = () => {
           <ShoppingCart />
           <Link>Nguyen Long</Link>
           <Link>Đăng xuất</Link>
+
+          {/* <Link>Đăng nhập</Link>
+          <Link>Đăng xuất</Link> */}
         </div>
       </div>
     </div>

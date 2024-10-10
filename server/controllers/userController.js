@@ -1,13 +1,13 @@
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import User from '../models/User.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const secretKey = 'secret';
 const generateToken = (userId) => {
     return jwt.sign({id: userId}, secretKey, {expiresIn: 86400});
 };
 
-exports.registerUser = (req, res) => {
+const registerUser = (req, res) => {
     const {username, email, password} = req.body;
     const hashedPassword = bcrypt.hashSync(password, 8);
 
@@ -24,7 +24,7 @@ exports.registerUser = (req, res) => {
     });
 };
 
-exports.loginUser = (req, res) => {
+const loginUser = (req, res) => {
     const {email, password} = req.body;
     User.findByEmail(email, (err, users) => {
         if (err) return res.status(500).send(err);
@@ -39,7 +39,7 @@ exports.loginUser = (req, res) => {
     });
 };
 
-exports.changePassword = (req, res) => {
+const changePassword = (req, res) => {
     const {userId, oldPassword, newPassword} = req.body;
 
     User.findById(userId, (err, users) => {
@@ -59,7 +59,7 @@ exports.changePassword = (req, res) => {
     });
 };
 
-exports.createUser = (req, res) => {
+const createUser = (req, res) => {
     const {username, email, password, role} = req.body;
     const hashPassword = bcrypt.hashSync(password, 8);
     const userData = {username, email, hashPassword, role};
@@ -70,14 +70,14 @@ exports.createUser = (req, res) => {
     });
 };
 
-exports.getAllUsers = (req, res) => {
+const getAllUsers = (req, res) => {
     User.findAll((err, users) => {
         if (err) return res.status(500).send(err);
         res.send(users);
     });
 };
 
-exports.getUserById = (req, res) => {
+const getUserById = (req, res) => {
     const userId = req.params.id;
 
     User.findById(userId, (err, user) => {
@@ -87,7 +87,7 @@ exports.getUserById = (req, res) => {
     });
 };
 
-exports.updateUser = (req, res) => {
+const updateUser = (req, res) => {
     const {username, email, role} = req.body;
     const userId = req.params.id;
 
@@ -98,7 +98,7 @@ exports.updateUser = (req, res) => {
     });
 };
 
-exports.deleteUser = (req, res) => {
+const deleteUser = (req, res) => {
     const userId = req.params.id;
 
     User.delete(userId, (err, result) => {
@@ -107,3 +107,5 @@ exports.deleteUser = (req, res) => {
         res.send({message: "User deleted successfully!"});
     });
 };
+
+export {generateToken, registerUser, loginUser, changePassword, createUser, getAllUsers, getUserById, updateUser, deleteUser};

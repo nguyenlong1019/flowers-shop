@@ -1,4 +1,4 @@
-const db = require('../config');
+import db from '../config.js';
 
 const Flower = {
     create: (flowerData, callback) => {
@@ -24,4 +24,4 @@ const Flower = {
     }
 };
 
-module.exports = Flower;
+export default Flower;

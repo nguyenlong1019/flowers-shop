@@ -1,6 +1,6 @@
-const Category = require('../models/Category');
+import Category from '../models/Category.js';
 
-exports.createCategory = (req, res) => {
+const createCategory = (req, res) => {
     const {name, description} = req.body;
 
     Category.create({name, description}, (err, result) => {
@@ -10,14 +10,14 @@ exports.createCategory = (req, res) => {
     });
 };
 
-exports.getAllCategories = (req, res) => {
+const getAllCategories = (req, res) => {
     Category.findAll((err, categories) => {
         if (err) return res.status(500).send(err);
         res.send(categories);
     });
 };
 
-exports.getCategoryById = (req, res) => {
+const getCategoryById = (req, res) => {
     const categoryId = req.params.id;
 
     Category.findById(categoryId, (err, category) => {
@@ -26,7 +26,7 @@ exports.getCategoryById = (req, res) => {
     });
 };
 
-exports.updateCategory = (req, res) => {
+const updateCategory = (req, res) => {
     const categoryId = req.params.id;
     const {name, description} = req.body;
 
@@ -36,10 +36,12 @@ exports.updateCategory = (req, res) => {
     });
 };
 
-exports.deleteCategory = (req, res) => {
+const deleteCategory = (req, res) => {
     const categoryId = req.params.id;
     Category.delete(categoryId, (err, result) => {
         if (err) return res.status(500).send(err);
         res.send({message: "Category deleted successfully!"});
     });
 };
+
+export {createCategory, getAllCategories, getCategoryById, updateCategory, deleteCategory};

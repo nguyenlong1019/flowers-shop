@@ -1,6 +1,6 @@
-const OrderItem = require('../models/OrderItem');
+import OrderItem from '../models/OrderItem.js';
 
-exports.createOrderItem = (req, res) => {
+const createOrderItem = (req, res) => {
   const { order_id, flower_id, quantity, price } = req.body;
   OrderItem.create({ order_id, flower_id, quantity, price }, (err, result) => {
     if (err) return res.status(500).send(err);
@@ -8,7 +8,7 @@ exports.createOrderItem = (req, res) => {
   });
 };
 
-exports.getOrderItemsByOrderId = (req, res) => {
+const getOrderItemsByOrderId = (req, res) => {
   const orderId = req.params.orderId;
   OrderItem.findByOrderId(orderId, (err, orderItems) => {
     if (err) return res.status(500).send(err);
@@ -16,7 +16,7 @@ exports.getOrderItemsByOrderId = (req, res) => {
   });
 };
 
-exports.updateOrderItem = (req, res) => {
+const updateOrderItem = (req, res) => {
   const orderItemId = req.params.id;
   const { quantity, price } = req.body;
 
@@ -26,7 +26,7 @@ exports.updateOrderItem = (req, res) => {
   });
 };
 
-exports.deleteOrderItem = (req, res) => {
+const deleteOrderItem = (req, res) => {
   const orderItemId = req.params.id;
 
   OrderItem.delete(orderItemId, (err, result) => {
@@ -34,3 +34,5 @@ exports.deleteOrderItem = (req, res) => {
     res.send({ message: "Order item deleted successfully!" });
   });
 };
+
+export {createOrderItem, getOrderItemsByOrderId, updateOrderItem, deleteOrderItem};

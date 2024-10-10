@@ -1,4 +1,4 @@
-const db = require('../config');
+import db from '../config.js';
 
 const OrderItem = {
     create: (orderItemData, callback) => {
@@ -20,4 +20,4 @@ const OrderItem = {
     },
 };
 
-module.exports = OrderItem;
+export default OrderItem;

@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
 const secretKey = 'secret'; // secret key here 
 
-exports.verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
     const token = req.headers['authorization'];
 
     if (!token) {
@@ -20,7 +20,7 @@ exports.verifyToken = (req, res, next) => {
     });
 };
 
-exports.isAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
     User.findById(req.userId, (err, users) => {
         if (err) {
             return res.status(500).send({message: 'Error finding user'});
@@ -41,7 +41,7 @@ exports.isAdmin = (req, res, next) => {
     });
 };
 
-exports.isUser = (req, res, next) => {
+const isUser = (req, res, next) => {
     User.findById(req.userId, (err, users) => {
         if (err) {
             return res.status(500).send({message: 'Error finding user'});
@@ -61,3 +61,5 @@ exports.isUser = (req, res, next) => {
         res.status(403).send({message: 'Require User Role!'});
     });
 };
+
+export {verifyToken, isAdmin, isUser};

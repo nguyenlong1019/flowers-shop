@@ -1,4 +1,4 @@
-const db = require('../config');
+import db from '../config.js';
 
 const Category = {
     create: (categoryData, callback) => {
@@ -24,4 +24,4 @@ const Category = {
     }
 };
 
-module.exports = Category;
+export default Category;

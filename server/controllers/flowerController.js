@@ -1,6 +1,6 @@
-const Flower = require('../models/Flower');
+import Flower from '../models/Flower.js';
 
-exports.createFlower = (req, res) => {
+const createFlower = (req, res) => {
     const {name, category_id, description, price, image} = req.body;
 
     Flower.create({name, category_id, description, price, image}, (err, result) => {
@@ -10,7 +10,7 @@ exports.createFlower = (req, res) => {
     });
 };
 
-exports.getAllFlowers = (req, res) => {
+const getAllFlowers = (req, res) => {
     Flower.findAll((err, flowers) => {
         if (err) return res.status(500).send(err);
 
@@ -18,7 +18,7 @@ exports.getAllFlowers = (req, res) => {
     });
 };
 
-exports.getFlowerById = (req, res) => {
+const getFlowerById = (req, res) => {
     const flowerId = req.params.id;
 
     Flower.findById(flowerId, (err, flower) => {
@@ -29,7 +29,7 @@ exports.getFlowerById = (req, res) => {
     });
 };
 
-exports.updateFlower = (req, res) => {
+const updateFlower = (req, res) => {
     const flowerId = req.params.id; 
     const {name, category_id, description, price, image} = req.body;
 
@@ -39,7 +39,7 @@ exports.updateFlower = (req, res) => {
     });
 };
 
-exports.deleteFlower = (req, res) => {
+const deleteFlower = (req, res) => {
     const flowerId = req.params.id;
 
     Flower.delete(flowerId, (err, result) => {
@@ -48,3 +48,5 @@ exports.deleteFlower = (req, res) => {
         res.send({message: "Flower deleted successfully!"});
     });
 };
+
+export {createFlower, getAllFlowers, getFlowerById, updateFlower, deleteFlower};
