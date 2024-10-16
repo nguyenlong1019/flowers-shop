@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../images/logo.png';
+import Logo from '../images/logo/logo.png';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
 
 const Header = () => {

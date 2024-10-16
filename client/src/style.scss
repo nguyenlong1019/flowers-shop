@@ -73,4 +73,35 @@ $primaryColor: #E72463;
             }
         }
     }
+
+    footer {
+        padding: 100px;
+        background-color: #1b1b1b;
+        display: grid;
+        grid-template-columns: 3fr 2fr 2fr 2fr 3fr;
+        gap: 24px;
+        color: #fff;
+
+        .footer-logo {
+            margin-bottom: 18px;
+        }
+
+        .footer-desc {
+            text-align: justify;
+            color: #fff;
+        }
+    }
+
+    .copyright {
+        padding: 20px 0;
+        background-color: #000;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        margin: 0;
+
+        span {
+            color: #E72463;
+        }
+    }
 }
