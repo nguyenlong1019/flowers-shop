@@ -19,8 +19,8 @@ const Header = () => {
         </div>
         <div className="actions">
           <ShoppingCart />
-          <Link>Nguyen Long</Link>
-          <Link>Đăng xuất</Link>
+          <Link to="/">Nguyen Long</Link>
+          <Link to="/">Đăng xuất</Link>
 
           {/* <Link>Đăng nhập</Link>
           <Link>Đăng xuất</Link> */}

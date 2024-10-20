@@ -1,8 +1,13 @@
 $primaryColor: #E72463;
 
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 .app {
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
     color: #000;
     box-sizing: border-box;
     margin: 0;
