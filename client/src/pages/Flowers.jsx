@@ -33,7 +33,7 @@ const Flowers = () => {
         </div>
         <div className='g-3-wrapper'>
           
-        <div className="g-3">
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod1Img} alt="" />
             </div>
@@ -44,8 +44,8 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
-          <div className="g-3">
+          </Link>
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod2Img} alt="" />
             </div>
@@ -56,8 +56,8 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
-          <div className="g-3">
+          </Link>
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod3Img} alt="" />
             </div>
@@ -68,9 +68,9 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className="g-3">
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod4Img} alt="" />
             </div>
@@ -81,8 +81,8 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
-          <div className="g-3">
+          </Link>
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod5Img} alt="" />
             </div>
@@ -93,8 +93,8 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
-          <div className="g-3">
+          </Link>
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod6Img} alt="" />
             </div>
@@ -105,9 +105,9 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className="g-3">
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod7Img} alt="" />
             </div>
@@ -118,8 +118,8 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
-          <div className="g-3">
+          </Link>
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod8Img} alt="" />
             </div>
@@ -130,8 +130,8 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
-          <div className="g-3">
+          </Link>
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod9Img} alt="" />
             </div>
@@ -142,7 +142,7 @@ const Flowers = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
+          </Link>
 
         </div>
       </div>

@@ -41,7 +41,7 @@ const Home = () => {
           <h3 className='title-slide'>Top Trending</h3>
           <h2>2024 Flower Trend</h2>
           <p>"Sắc hoa tươi thắm - Gửi trọn yêu thương"</p>
-          <Link className='btn flosun-btn' to="/">Đặt ngay</Link>
+          <Link className='btn flosun-btn' to="/flowers">Đặt ngay</Link>
         </div>
       </div>
 
@@ -89,22 +89,22 @@ const Home = () => {
           Sản phẩm nổi bật
         </h3>
         <div className='container g-4-wrapper'>
-          <div className='g-4'>
+          <Link to="/detail" className='g-4'>
             <div className='g-4-img'>
               <img src={prod1Img} alt='' />
             </div>
             <div className='g-4-content'>
               <h4>
-                <Link to="/">
+                <Link to="/detail">
                   Hoa cúc hồng
                 </Link>
               </h4>
               <span className='price'>80.000 đ</span>
               <span className='price-old'>110.000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className='g-4'>
+          <Link to="/detail" className='g-4'>
             <div className='g-4-img'>
               <img src={prod2Img} alt='' />
             </div>
@@ -117,9 +117,9 @@ const Home = () => {
               <span className='price'>80.000 đ</span>
               <span className='price-old'>110.000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className='g-4'>
+          <Link to="/detail" className='g-4'>
             <div className='g-4-img'>
               <img src={prod3Img} alt='' />
             </div>
@@ -132,9 +132,9 @@ const Home = () => {
               <span className='price'>80.000 đ</span>
               <span className='price-old'>110.000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className='g-4'>
+          <Link to="/detail" className='g-4'>
             <div className='g-4-img'>
               <img src={prod4Img} alt='' />
             </div>
@@ -147,9 +147,9 @@ const Home = () => {
               <span className='price'>80.000 đ</span>
               <span className='price-old'>110.000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className='g-4'>
+          <Link to="/detail" className='g-4'>
             <div className='g-4-img'>
               <img src={prod5Img} alt='' />
             </div>
@@ -162,9 +162,9 @@ const Home = () => {
               <span className='price'>80.000 đ</span>
               <span className='price-old'>110.000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className='g-4'>
+          <Link to="/detail" className='g-4'>
             <div className='g-4-img'>
               <img src={prod6Img} alt='' />
             </div>
@@ -177,9 +177,9 @@ const Home = () => {
               <span className='price'>80.000 đ</span>
               <span className='price-old'>110.000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className='g-4'>
+          <Link to="/detail" className='g-4'>
             <div className='g-4-img'>
               <img src={prod7Img} alt='' />
             </div>
@@ -192,9 +192,9 @@ const Home = () => {
               <span className='price'>80.000 đ</span>
               <span className='price-old'>110.000 đ</span>
             </div>
-          </div>
+          </Link>
 
-          <div className='g-4'>
+          <Link to="/detail" className='g-4'>
             <div className='g-4-img'>
               <img src={prod8Img} alt='' />
             </div>
@@ -207,14 +207,14 @@ const Home = () => {
               <span className='price'>80.000 đ</span>
               <span className='price-old'>110.000 đ</span>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
       
       <div className="deal-of-the-day">
         <h3 className='section-title-3'>Deal of the day</h3>
         <div className="g-3-wrapper container">
-          <div className="g-3">
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod1Img} alt="" />
             </div>
@@ -225,8 +225,8 @@ const Home = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
-          <div className="g-3">
+          </Link>
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod1Img} alt="" />
             </div>
@@ -237,8 +237,8 @@ const Home = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
-          <div className="g-3">
+          </Link>
+          <Link to="/detail" className="g-3">
             <div className="g-3-img">
               <img src={prod1Img} alt="" />
             </div>
@@ -249,7 +249,7 @@ const Home = () => {
               <span className="price">90,000 đ</span>
               <span className="price-old">110,000 đ</span>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
 

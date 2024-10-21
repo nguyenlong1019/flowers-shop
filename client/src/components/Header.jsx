@@ -13,7 +13,7 @@ const Header = () => {
         <div className="links">
           <Link className='active'>Trang chủ</Link>
           <Link>Về chúng tôi</Link>
-          <Link>Hoa</Link>
+          <Link to="/flowers">Hoa</Link>
           <Link>Bài viết</Link>
           <Link>Liên hệ</Link>
         </div>
