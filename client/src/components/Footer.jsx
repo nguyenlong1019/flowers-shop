@@ -33,19 +33,19 @@ const Footer = () => {
           <h2>Information</h2>
           <ul>
             <li>
-              <a href="#">Out Company</a>
+              <Link>Về chúng tôi</Link>
             </li>
             <li>
-              <a href="#">Contact Us</a>
+              <Link>Liên hệ</Link>
             </li>
             <li>
-              <a href="#">Our Services</a>
+              <Link>Dịch vụ của chúng tôi</Link>
             </li>
             <li>
-              <a href="#">Why We?</a>
+              <Link>Tại sao chọn chúng tôi?</Link>
             </li>
             <li>
-              <a href="#">Careers</a>
+              <Link>Tuyển dụng</Link>
             </li>
           </ul>
         </div>
@@ -53,39 +53,39 @@ const Footer = () => {
           <h2>Quicklink</h2>
           <ul>
             <li>
-              <a href="#">About</a>
+              <Link>Giới thiệu</Link>
             </li>
             <li>
-              <a href="#">Blog</a>
+              <Link>Blog</Link>
             </li>
             <li>
-              <a href="#">Shop</a>
+              <Link>Cửa hàng</Link>
             </li>
             <li>
-              <a href="#">Cart</a>
+              <Link>Giỏ hàng</Link>
             </li>
             <li>
-              <a href="Contact"></a>
+              <Link>Liên hệ</Link>
             </li>
           </ul>
         </div>
         <div className="single-footer">
-          <h2>Support</h2>
+          <h2>Trung tâm trợ giúp</h2>
           <ul>
             <li>
-              <a href="#">Online Support</a>
+              <Link>Hỗ trợ trực tuyến</Link>
             </li>
             <li>
-              <a href="#">Shipping Policy</a>
+              <Link>Chính sách chống hàng giả</Link>
             </li>
             <li>
-              <a href="#">Return Policy</a>
+            <Link>Chính sách trả hàng</Link>
             </li>
             <li>
-              <a href="#">Pricacy Policy</a>
+            <Link>Chính sách bảo mật</Link>
             </li>
             <li>
-              <a href="#">Terms of Service</a>
+            <Link>Dịch vụ</Link>
             </li>
           </ul>
         </div>
