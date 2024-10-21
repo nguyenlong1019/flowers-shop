@@ -37,7 +37,6 @@ a {
 
 .section-title-3 {
     font-size: 36px;
-    // font-family: "Josefin Slab", serif;
     font-weight: 600;
     margin-bottom: 0px;
     padding-bottom: 25px;
@@ -59,6 +58,32 @@ a {
 
     .container-fluid {
         width: 100%;
+    }
+
+    .breadcrumb {
+        padding: 100px 0;
+        background-image: url('./images/bg/breadcrumb.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        span {
+            font-size: 18px;
+            color: #000000;
+            font-weight: 400;
+            line-height: 1;
+            margin-right: 12px;
+        }
+    }
+
+    .title-3 {
+        font-family: "Great Vibes", cursive;
+        font-size: 30px;
+        font-weight: 700;
     }
 
     a {
@@ -411,6 +436,7 @@ a {
                     align-items: center;
                     justify-content: space-between;
                     gap: 30px;
+                    flex: 1;
 
                     .g-7 {
                         flex: 7;
@@ -426,6 +452,7 @@ a {
                     align-items: center;
                     justify-content: space-between;
                     gap: 30px;
+                    flex: 1;
                 }
             }
         }
@@ -533,32 +560,7 @@ a {
 
     .product-detail {
 
-        .breadcrumb {
-            padding: 100px 0;
-            background-image: url('./images/bg/breadcrumb.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-
-            span {
-                font-size: 18px;
-                color: #000000;
-                // font-family: "Poppins", sans-serif;
-                font-weight: 400;
-                line-height: 1;
-                margin-right: 12px;
-            }
-        }
-
-        .title-3 {
-            font-family: "Great Vibes", cursive;
-            font-size: 30px;
-            font-weight: 700;
-        }
+        
 
         .product {
             margin-top: 100px;
@@ -575,6 +577,189 @@ a {
                     height: auto;
                     object-fit: cover;
                     border: 1px solid #ddd;
+                }
+            }
+
+            .product-info {
+                padding: 12px;
+                
+                h2.product-title {
+                    font-size: 30px;
+                    font-weight: 400;
+                    margin-top: 0;
+                }
+
+                .price {
+                    display: inline-block;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #484848;
+                }
+
+                .desc {
+                    text-align: justify;
+                    line-height: 1.8;
+                    font-size: 16px;
+                    color: #484848;
+                    margin-bottom: 48px;
+                }
+
+                .quantity {
+                    margin-bottom: 48px;
+
+                    .cart-plus-minus {
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                        gap: 8px;
+
+                        .group-qty {
+                            display: flex;
+                            align-items: center;
+                            justify-content: start;
+                            gap: 0;
+                            width: 150px;
+                            height: 45px;
+
+                            input {
+                                display: inline-block;
+                                width: 80px;
+                                outline: none;
+                                border: 1px solid #ddd;
+                                text-align: center;
+                                line-height: 45px;
+                                font-size: 20px;
+                                font-weight: 700;
+                            }
+
+                            button {
+                                width: 35px;
+                                display: inline-block;
+                                border: 1px solid #ddd;
+                                line-height: 45px;
+                                cursor: pointer;
+                            }
+
+                            
+                        }
+
+                        .add-to-cart {
+                            line-height: 45px;
+                            display: inline-block;
+                            border: none;
+                            outline: none;
+                            font-size: 17px;
+                            font-weight: 500;
+                            color: #fff;
+                            background-color: #000;
+                            padding: 0 30px;
+                            vertical-align: middle;
+                            cursor: pointer;
+                        }
+
+                        .add-to-wishlist {
+                            line-height: 45px;
+                            display: inline-block;
+                            border: none;
+                            outline: none;
+                            font-size: 17px;
+                            font-weight: 500;
+                            color: #000;
+                            background-color: #fff;
+                            border: 2px solid #000;
+                            padding: 0 30px;
+                            cursor: pointer;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+
+                .share {
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                    gap: 24px;
+
+                    strong {
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
+
+                    i {
+                        font-size: 24px;
+                    }
+                }
+
+            }
+        }
+
+        .product-detail-info {
+            margin-top: 100px;
+            margin-bottom: 30px;
+
+            .product-detail-header {
+                text-align: center;
+                background-color: #000;
+                padding: 8px 0;
+
+                a {
+                    display: inline-block;
+                    font-size: 18px;
+                    color: #fff;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                }
+            }
+
+            .product-detail-body {
+                background-color: #f8f8f8;
+                padding: 40px;
+
+                p {
+                    text-align: justify;
+                    margin-bottom: 16px;
+                    line-height: 1.7;
+                }
+            }
+        }
+    }
+
+    .product-list {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 24px;
+        padding-top: 100px;
+        margin-bottom: 30px;
+
+        .g-3:hover {
+            box-shadow: 0 5px 11px rgba(0, 0, 0, 0.14);
+        }
+
+        .search-section {
+            padding: 12px;
+
+            .group-input {
+                
+                input {
+                    display: inline-block;
+                    border: 2px solid #000;
+                    outline: none;
+                    padding: 12px;
+                    color: #484848;
+                    font-size: 15px;
+                }
+
+                button {
+                    display: inline-block;
+                    font-size: 15px;
+                    padding: 12px;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    background-color: #000;
+                    color: #fff;
+                    font-weight: bold;
+                    border: 2px solid #000;
                 }
             }
         }

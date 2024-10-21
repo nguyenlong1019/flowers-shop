@@ -8,6 +8,7 @@ import Order from './pages/Order';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './style.scss';
+import Flowers from './pages/Flowers';
 
 const Layout = () => {
   return (
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: "/order",
         element: <Order />,
       },
+      {
+        path: "/flowers",
+        element: <Flowers />,
+      }
     ],
   },
   {
