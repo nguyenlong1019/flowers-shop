@@ -18,7 +18,7 @@ const Header = () => {
           <Link>Liên hệ</Link>
         </div>
         <div className="actions">
-          <ShoppingCart />
+          <Link to="/cart"><ShoppingCart /></Link>
           <Link to="/">Nguyen Long</Link>
           <Link to="/">Đăng xuất</Link>
 

@@ -1,7 +1,7 @@
 import Order from '../models/Order.js';
 
 const createOrder = (req, res) => {
-    const {user_id, total_price, status} = req.body;
+    const {user_id, total_price, shipping_address, shipping_city, shipping_postal_code, shipping_phone, status} = req.body;
     Order.create({user_id, total_price, status}, (err, result) => {
         if (err) return res.status(500).send(err);
 

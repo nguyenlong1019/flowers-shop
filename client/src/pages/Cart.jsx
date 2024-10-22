@@ -191,9 +191,9 @@ const Cart = () => {
         </div>
 
         <div className="cart-total-info">
-            <button className="btn btn-process-checkout">
+            <Link to="/checkout" className="btn btn-process-checkout">
                 Proceed To Checkout
-            </button>
+            </Link>
         </div>
       </div>
 
