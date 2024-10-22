@@ -49,4 +49,4 @@ const deleteUser = (req, res) => {
     });
 };
 
-export {generateToken, registerUser, loginUser, changePassword, createUser, getAllUsers, getUserById, updateUser, deleteUser};
+export {createUser, getAllUsers, getUserById, updateUser, deleteUser};
