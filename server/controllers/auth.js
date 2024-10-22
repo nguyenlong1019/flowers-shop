@@ -43,7 +43,13 @@ export const login = (req, res) => {
             return res.status(400).json("Wrong password!");
         }
 
-        const token = jwt.sign({id: data[0].id}, "jwtkey");
+        let token;
+        if (data[0].role == "admin") {
+            token = jwt.sign({id: data[0].id, role: 'admin'}, "jwtkey");
+        } else {
+            token = jwt.sign({id: data[0].id}, "jwtkey");
+        }
+
         const {password, ...other} = data[0];
 
         res.cookie("access_token", token, {

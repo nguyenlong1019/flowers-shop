@@ -1,13 +1,26 @@
 import Flower from '../models/Flower.js';
+import jwt from "jsonwebtoken";
 
 const createFlower = (req, res) => {
-    const {name, category_id, description, price, image} = req.body;
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json("Not authenticated!");
 
-    Flower.create({name, category_id, description, price, image}, (err, result) => {
-        if (err) return res.status(500).send(err);
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid!");
 
-        res.send({message: "Flower created successfully!"});
+        if (userInfo.role !== 'admin') {
+            return res.status(403).json("You do not have permission to perform this action.")
+        }
+        
+        const {name, category_id, description, price, price_old, image, is_feature, is_sale} = req.body;
+    
+        Flower.create({name, category_id, description, price, price_old, image, is_feature, is_sale}, (err, result) => {
+            if (err) return res.status(500).send(err);
+    
+            res.send({message: "Flower created successfully!"});
+        });
     });
+
 };
 
 const getAllFlowers = (req, res) => {
@@ -30,23 +43,47 @@ const getFlowerById = (req, res) => {
 };
 
 const updateFlower = (req, res) => {
-    const flowerId = req.params.id; 
-    const {name, category_id, description, price, image} = req.body;
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json("Not authenticated!");
 
-    Flower.update(flowerId, {name, category_id, description, price, image}, (err, result) => {
-        if (err) return res.status(500).send(err);
-        res.send({message: "Flower updated successfully!"});
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid!");
+    
+        if (userInfo.role !== 'admin') {
+            return res.status(403).json("You do not have permission to perform this action.")
+        }
+        
+        
+        const flowerId = req.params.id; 
+        const {name, category_id, description, price, price_old, image, is_feature, is_sale} = req.body;
+    
+        Flower.update(flowerId, {name, category_id, description, price, price_old, image, is_feature, is_sale}, (err, result) => {
+            if (err) return res.status(500).send(err);
+            res.send({message: "Flower updated successfully!"});
+        });
     });
 };
 
 const deleteFlower = (req, res) => {
-    const flowerId = req.params.id;
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json("Not authenticated!");
 
-    Flower.delete(flowerId, (err, result) => {
-        if (err) return res.status(500).send(err);
-
-        res.send({message: "Flower deleted successfully!"});
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid!");
+    
+        if (userInfo.role !== 'admin') {
+            return res.status(403).json("You do not have permission to perform this action.")
+        }
+        
+        const flowerId = req.params.id;
+    
+        Flower.delete(flowerId, (err, result) => {
+            if (err) return res.status(500).send(err);
+    
+            res.send({message: "Flower deleted successfully!"});
+        });
     });
+
 };
 
 export {createFlower, getAllFlowers, getFlowerById, updateFlower, deleteFlower};

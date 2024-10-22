@@ -1,65 +1,21 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+import jwt from "jsonwebtoken";
 
-const secretKey = 'secret'; // secret key here 
+export const verifyToken = (req, res, next) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json("Not authenticated!");
 
-const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
+    jwt.verify(token, "jwtkey", (err, userInfo) => {
+        if (err) return res.status(403).json("Token is not valid!");
 
-    if (!token) {
-        return res.status(403).send({message: 'No token provided!'});
-    }
+        req.user = userInfo;
 
-    jwt.verify(token, secretKey, (err, decoded) => {
-        if (err) {
-            return res.status(401).send({'message': 'Unauthorized!'});
-        }
-
-        req.userId = decoded.id;
         next();
     });
 };
 
-const isAdmin = (req, res, next) => {
-    User.findById(req.userId, (err, users) => {
-        if (err) {
-            return res.status(500).send({message: 'Error finding user'});
-        }
-
-        if (!users.length) {
-            return res.status(404).send({message: 'User not found'});
-        }
-
-        const user = users[0];
-
-        if (user.role === 'admin') {
-            next();
-            return;
-        }
-
-        res.status(403).send({message: 'Require Admin Role!'});
-    });
+export const verifyAdmin = (req, res, next) => {
+    if (req.user.role !== 'admin') {
+        return res.status(403).json("You do not have permission to perform this action.");
+    }
+    next();
 };
-
-const isUser = (req, res, next) => {
-    User.findById(req.userId, (err, users) => {
-        if (err) {
-            return res.status(500).send({message: 'Error finding user'});
-        }
-
-        if (!users.length) {
-            return res.status(404).send({message: 'User not found'});
-        }
-
-        const user = users[0];
-
-        if (user.role === 'user' || user.role === 'admin') {
-            next();
-            return;
-        }
-
-        res.status(403).send({message: 'Require User Role!'});
-    });
-};
-
-export {verifyToken, isAdmin, isUser};
