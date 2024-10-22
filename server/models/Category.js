@@ -14,6 +14,10 @@ const Category = {
         db.query(`SELECT * FROM categories WHERE id = ?`, [categoryId], callback);
     },
 
+    findByName: (categoryName, callback) => {
+        db.query(`SELECT * FROM categories WHERE name = ?`, [categoryName], callback);
+    },
+
     update: (categoryId, categoryData, callback) => {
         db.query(`UPDATE categories SET name = ?, description = ? WHERE id = ?`,
         [categoryData.name, categoryData.description, categoryId], callback);
