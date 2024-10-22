@@ -6,13 +6,17 @@ const User = {
         [userData.username, userData.email, userData.password, userData.role], callback);
     },
 
+    findById: (userId, callback) => {
+        db.query(`SELECT * FROM users WHERE id = ?`, [userId], callback);
+    },
+
     findByEmail: (email, callback) => {
         db.query(`SELECT * FROM users WHERE email = ?`, [email], callback);
     },
 
-    findById: (userId, callback) => {
-        db.query(`SELECT * FROM users WHERE id = ?`, [userId], callback);
-    },
+    findByUsername: (username, callback) => {
+        db.query(`SELECT * FROM users WHERE username = ?`, [username], callback);
+    },  
 
     findAll: (callback) => {
         db.query(`SELECT * FROM users`, callback);
@@ -26,10 +30,6 @@ const User = {
     delete: (userId, callback) => {
         db.query(`DELETE FROM users WHERE id = ?`, [userId], callback);
     },
-
-    updatePassword: (userId, newPassword, callback) => {
-        db.query(`UPDATE users SET password = ? WHERE id = ?`, [newPassword, userId], callback);
-    }
 };
 
 export default User;
