@@ -1,9 +1,10 @@
 import express from 'express';
 const router = express.Router();
 import {createOrderItem, getOrderItemsByOrderId, updateOrderItem, deleteOrderItem} from '../controllers/orderItemController.js';
+import {verifyToken, verifyAdmin} from '../middlewares/authMiddleware.js';
 
-router.post('/', createOrderItem);
-router.put('/:id', updateOrderItem);
-router.delete('/:id', deleteOrderItem);
+router.post('/', verifyToken, createOrderItem);
+router.put('/:id', verifyToken, updateOrderItem);
+router.delete('/:id', verifyToken, deleteOrderItem);
 
 export default router;
