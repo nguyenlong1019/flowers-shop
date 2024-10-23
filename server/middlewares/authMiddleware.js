@@ -19,3 +19,16 @@ export const verifyAdmin = (req, res, next) => {
     }
     next();
 };
+
+export const verifyOrderOwnership = (req, res, next) => {
+    const orderId = req.params.id;
+    const userId = req.user.id;
+
+    const query = "SELECT * FROM orders WHERE id = ? AND user_id = ?";
+    db.query(query, [orderId, userId], (err, data) => {
+        if (err) return res.status(500).json("Internal server error.");
+        if (data.length === 0) return res.status(403).json("You do not have permission to access this order.");
+
+        next();
+    });
+};

@@ -1,8 +1,10 @@
 import User from '../models/User.js';
+import bcrypt from "bcryptjs";
 
 const createUser = (req, res) => {
     const {username, email, password, role} = req.body;
-    const hashPassword = bcrypt.hashSync(password, 8);
+    const salt = bcrypt.genSaltSync(10);
+    const hashPassword = bcrypt.hashSync(password, salt);
     const userData = {username, email, hashPassword, role};
     User.create(userData, (err, result) => {
         if (err) return res.status(500).send(err);

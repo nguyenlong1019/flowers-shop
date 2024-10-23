@@ -3,7 +3,7 @@ import db from '../config.js';
 const User = {
     create: (userData, callback) => {
         db.query(`INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)`,
-        [userData.username, userData.email, userData.password, userData.role], callback);
+        [userData.username, userData.email, userData.hashPassword, userData.role], callback);
     },
 
     findById: (userId, callback) => {
