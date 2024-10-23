@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../images/logo/logo.png';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
+import {AuthContext} from "../context/authContext";
 
 const Header = () => {
+  const {currentUser, logout} = useContext(AuthContext);
+
   return (
     <div className='header'>
       <div className="navbar">
@@ -19,11 +22,14 @@ const Header = () => {
         </div>
         <div className="actions">
           <Link to="/cart"><ShoppingCart /></Link>
-          <Link to="/">Nguyen Long</Link>
-          <Link to="/">Đăng xuất</Link>
-
-          {/* <Link>Đăng nhập</Link>
-          <Link>Đăng xuất</Link> */}
+          {currentUser ? (
+            <>
+              <Link to="/">{currentUser.username}</Link>
+              <Link onClick={logout}>Đăng xuất</Link>
+            </>
+          ) : (
+            <Link to="/login">Đăng nhập</Link>
+          )}
         </div>
       </div>
     </div>

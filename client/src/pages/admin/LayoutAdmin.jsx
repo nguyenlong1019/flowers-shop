@@ -1,13 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 
 
 const LayoutAdmin = () => {
+    const {currentUser, logout} = useContext(AuthContext);
+
     return (
         <div className="admin-layout">
             <nav className="sidebar">
                 
                 <ul>
+                    <li>
+                        <Link>
+                            <i class="fa-solid fa-user"></i>
+                            {currentUser && currentUser.username}
+                        </Link>
+                    </li>
                     <li>
                         <Link>
                             <i class="fa-solid fa-gauge"></i>
@@ -39,7 +48,7 @@ const LayoutAdmin = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link>
+                        <Link onClick={logout}>
                             <i class="fa-solid fa-right-from-bracket"></i>
                             Đăng xuất
                         </Link>
