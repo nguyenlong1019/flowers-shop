@@ -18,6 +18,9 @@ import CategoryAdmin from './pages/admin/CategoryAdmin';
 import OrderAdmin from './pages/admin/OrderAdmin';
 import FlowerAdmin from './pages/admin/FlowerAdmin';
 import LayoutAdmin from './pages/admin/LayoutAdmin';
+import LoginRequired from './pages/LoginRequired';
+import LoggedIn from './pages/LoggedIn';
+import LoginRequiredAdmin from './pages/admin/LoginRequiredAdmin';
 
 const Layout = () => {
   return (
@@ -44,7 +47,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/order",
-        element: <Order />,
+        element: <LoginRequired>
+          <Order />
+        </LoginRequired>,
       },
       {
         path: "/flowers",
@@ -52,19 +57,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: <LoginRequired>
+          <Cart />
+        </LoginRequired>,
       },
       {
         path: "/checkout",
-        element: <Checkout />,
+        element: <LoginRequired>
+          <Checkout />
+        </LoginRequired>,
       },
       {
         path: '/register',
-        element: <Register />,
+        element: <LoggedIn>
+          <Register />
+        </LoggedIn>,
       },
       {
         path: '/login',
-        element: <Login />,
+        element: <LoggedIn>
+          <Login />
+        </LoggedIn>,
       },
     ],
   },
@@ -74,23 +87,33 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Dashboard />,
+        element: <LoginRequiredAdmin>
+          <Dashboard />
+        </LoginRequiredAdmin>,
       },
       {
         path: 'users',
-        element: <UserAdmin />,
+        element: <LoginRequiredAdmin>
+          <UserAdmin />
+        </LoginRequiredAdmin>,
       },
       {
         path: 'categories',
-        element: <CategoryAdmin />,
+        element: <LoginRequiredAdmin>
+            <CategoryAdmin />
+          </LoginRequiredAdmin>,
       },
       {
         path: 'orders',
-        element: <OrderAdmin />,
+        element: <LoginRequiredAdmin>
+          <OrderAdmin />
+        </LoginRequiredAdmin>,
       },
       {
         path: 'products',
-        element: <FlowerAdmin />,
+        element: <LoginRequiredAdmin>
+          <FlowerAdmin />
+        </LoginRequiredAdmin>,
       },
     ]
   },
