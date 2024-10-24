@@ -1,10 +1,15 @@
 import React, {useContext} from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 
 
 const LayoutAdmin = () => {
     const {currentUser, logout} = useContext(AuthContext);
+    const location = useLocation();
+
+    const isActive = (path) => {
+        return location.pathname === path ? 'active' : '';
+    };
 
     return (
         <div className="admin-layout">
@@ -17,32 +22,32 @@ const LayoutAdmin = () => {
                             {currentUser && currentUser.username}
                         </Link>
                     </li>
-                    <li>
-                        <Link>
+                    <li className={isActive("/admin")}>
+                        <Link to="/admin">
                             <i class="fa-solid fa-gauge"></i>
                             Dashboard
                         </Link>
                     </li>
-                    <li>
-                        <Link>
+                    <li className={isActive("/admin/users")}>
+                        <Link to="/admin/users">
                             <i class="fa-solid fa-user"></i>
                             Quản lý người dùng
                         </Link>
                     </li>
-                    <li>
-                        <Link>
+                    <li className={isActive("/admin/categories")}>
+                        <Link to="/admin/categories">
                             <i class="fa-solid fa-table-cells-large"></i>
                             Danh mục sản phẩm
                         </Link>
                     </li>
-                    <li>
-                        <Link>
+                    <li className={isActive("/admin/products")}>
+                        <Link to="/admin/products">
                             <i class="fa-solid fa-leaf"></i>
                             Quản lý sản phẩm
                         </Link>
                     </li>
-                    <li>
-                        <Link>
+                    <li className={isActive("/admin/orders")}>
+                        <Link to="/admin/orders">
                             <i class="fa-brands fa-first-order-alt"></i>
                             Quản lý đơn hàng
                         </Link>

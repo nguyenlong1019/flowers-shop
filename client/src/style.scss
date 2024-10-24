@@ -1024,6 +1024,11 @@ a {
             padding: 12px;
         }
 
+        .sidebar ul li.active {
+            background-color: #024CAA;
+            border-radius: 6px;
+        }
+
         .sidebar ul li a i {
             font-size: 18px;
             margin-right: 8px;
@@ -1041,6 +1046,14 @@ a {
 
 
 
+        }
+
+        .t-data {
+
+            table, th, td {
+                border: 1px solid #ddd;
+                border-collapse: collapse;
+            }
         }
     }
 
