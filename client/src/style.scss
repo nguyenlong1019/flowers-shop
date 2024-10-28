@@ -78,6 +78,18 @@ a {
         outline: none;
         border: 2px solid #ccc;
     }
+
+    textarea {
+        display: block;
+        width: 100%;
+        padding: 8px 16px;
+        color: #222;
+        font-size: 17px;
+        outline: none;
+        border: 2px solid #ccc;
+        resize: none; /* Cho phép thay đổi chiều cao */
+        min-height: 200px; /* Chiều cao tối thiểu */
+    }
 }
 
 button.btn-save {
@@ -1135,9 +1147,11 @@ button.btn-save {
             display: flex;
             align-items: center;
             justify-content: start;
+            max-width: 600px;
 
             form {
-                max-width: 600px;
+                // max-width: 600px;
+                width: 100%;
                 box-sizing: border-box;
                 margin-right: 24px;
 

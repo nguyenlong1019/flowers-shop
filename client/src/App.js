@@ -22,6 +22,7 @@ import LoginRequired from './pages/LoginRequired';
 import LoggedIn from './pages/LoggedIn';
 import LoginRequiredAdmin from './pages/admin/LoginRequiredAdmin';
 import UpdateUser from './pages/admin/UpdateUser';
+import UpdateCategory from './pages/admin/UpdateCategory';
 
 const Layout = () => {
   return (
@@ -100,16 +101,32 @@ const router = createBrowserRouter([
       },
       {
         path: 'users/add',
-        element: <UpdateUser />,
+        element: <LoginRequiredAdmin>
+          <UpdateUser />
+        </LoginRequiredAdmin>,
       },
       {
         path: 'users/edit/:userId',
-        element: <UpdateUser />
+        element: <LoginRequiredAdmin>
+          <UpdateUser />
+        </LoginRequiredAdmin>,
       },
       {
         path: 'categories',
         element: <LoginRequiredAdmin>
             <CategoryAdmin />
+          </LoginRequiredAdmin>,
+      },
+      {
+        path: 'categories/add',
+        element: <LoginRequiredAdmin>
+            <UpdateCategory />
+          </LoginRequiredAdmin>,
+      },
+      {
+        path: 'categories/edit/:categoryId',
+        element: <LoginRequiredAdmin>
+            <UpdateCategory />
           </LoginRequiredAdmin>,
       },
       {

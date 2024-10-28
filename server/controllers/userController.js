@@ -3,13 +3,13 @@ import bcrypt from "bcryptjs";
 
 const createUser = (req, res) => {
     const {username, email, password, role} = req.body;
-    console.log(username, email, password, role);
+    // console.log(username, email, password, role);
     
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(password, salt);
     const userData = {username, email, hashPassword, role};
     User.create(userData, (err, result) => {
-        console.log(err);
+        // console.log(err);
         if (err) return res.status(500).send(err);
 
         res.send({message: "User created successfully!"});
