@@ -48,6 +48,50 @@ a {
     font-size: 24px;
 }
 
+.form-group {
+    max-width: 600px;
+    margin-bottom: 20px;
+
+    label {
+        font-size: 17px;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        padding: 8px 16px;
+        color: #222;
+        font-size: 17px;
+        outline: none;
+        border: 2px solid #ccc;
+    }
+
+    select {
+        display: block;
+        width: 200px;
+        padding: 8px 16px;
+        color: #222;
+        font-size: 17px;
+        outline: none;
+        border: 2px solid #ccc;
+    }
+}
+
+button.btn-save {
+    padding: 16px;
+    outline: none;
+    border: 2px solid #ddd;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #212529;
+    color: white;
+    font-size: 17px;
+    border-radius: 4px;
+}
+
 .group-qty {
     display: flex;
     align-items: center;
@@ -1049,14 +1093,54 @@ a {
             flex-grow: 1;
 
         }
+
+        a.btn-add-object {
+            // display: inline-block;
+            // padding: 12px;
+            background-color: #B1D690;
+            color: white;
+            font-size: 17px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+                font-size: 18px;
+            }
+        }
+
+        a.btn-edit-object {
+            margin-right: 12px;
+            i {
+                font-size: 16px;
+                padding: 0.75rem;
+                color: #8bcf4f;
+            }
+        }
+
+        a.btn-del-object {
+            i {
+                font-size: 16px;
+                padding: 0.75rem;
+                color: #cf2424;
+            }
+        }
         
         .search-section {
             margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: start;
 
             form {
                 max-width: 600px;
                 box-sizing: border-box;
-                
+                margin-right: 24px;
+
                 .search-group {
                     width: 100%;
                     display: flex;
@@ -1085,6 +1169,7 @@ a {
                     }
                 }
             }
+
         }
 
         .t-data {
@@ -1102,7 +1187,7 @@ a {
 
                 th, td {
                     padding: 0.75rem;
-                    vertical-align: top;
+                    // vertical-align: top;
                     border-bottom: 1px solid #dee2e6;
                 }
 

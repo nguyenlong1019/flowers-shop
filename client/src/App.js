@@ -21,6 +21,7 @@ import LayoutAdmin from './pages/admin/LayoutAdmin';
 import LoginRequired from './pages/LoginRequired';
 import LoggedIn from './pages/LoggedIn';
 import LoginRequiredAdmin from './pages/admin/LoginRequiredAdmin';
+import UpdateUser from './pages/admin/UpdateUser';
 
 const Layout = () => {
   return (
@@ -96,6 +97,14 @@ const router = createBrowserRouter([
         element: <LoginRequiredAdmin>
           <UserAdmin />
         </LoginRequiredAdmin>,
+      },
+      {
+        path: 'users/add',
+        element: <UpdateUser />,
+      },
+      {
+        path: 'users/edit/:userId',
+        element: <UpdateUser />
       },
       {
         path: 'categories',
