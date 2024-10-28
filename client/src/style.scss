@@ -44,6 +44,10 @@ a {
     text-align: center;
 }
 
+.admin-title {
+    font-size: 24px;
+}
+
 .group-qty {
     display: flex;
     align-items: center;
@@ -1044,8 +1048,43 @@ a {
             padding: 20px;
             flex-grow: 1;
 
+        }
+        
+        .search-section {
+            margin-bottom: 24px;
 
+            form {
+                max-width: 600px;
+                box-sizing: border-box;
+                
+                .search-group {
+                    width: 100%;
+                    display: flex;
 
+                    input {
+                        display: inline-block;
+                        border: 1px solid #ccc;
+                        padding: 8px 12px;
+                        color: #222;
+                        font-size: 17px;
+                        line-height: 1.5;
+                        outline: none;
+                        flex: 1;
+                    }
+
+                    button {
+                        cursor: pointer;
+                        background-color: #024CAA;
+
+                        i {
+                            font-size: 20px;
+                            padding: 6px;
+                            border-radius: 4px;
+                            color: white;
+                        }
+                    }
+                }
+            }
         }
 
         .t-data {
@@ -1053,6 +1092,33 @@ a {
             table, th, td {
                 border: 1px solid #ddd;
                 border-collapse: collapse;
+            }
+
+            table.table {
+                width: 100%;
+                margin-bottom: 1rem;
+                color: #212529;
+                border-collapse: collapse;
+
+                th, td {
+                    padding: 0.75rem;
+                    vertical-align: top;
+                    border-bottom: 1px solid #dee2e6;
+                }
+
+                thead th {
+                    vertical-align: bottom;
+                    border-bottom: 2px solid #dee2e6;
+                }
+
+                tbody + tbody {
+                    border-top: 2px solid #dee2e6;
+                }
+            }
+
+            table.table-hover tbody tr:hover {
+                color: #212529;
+                background-color: rgba(0, 0, 0, 0.075);
             }
         }
     }
