@@ -23,6 +23,8 @@ import LoggedIn from './pages/LoggedIn';
 import LoginRequiredAdmin from './pages/admin/LoginRequiredAdmin';
 import UpdateUser from './pages/admin/UpdateUser';
 import UpdateCategory from './pages/admin/UpdateCategory';
+import UpdateFlower from './pages/admin/UpdateFlower';
+import UpdateOrder from './pages/admin/UpdateOrder'
 
 const Layout = () => {
   return (
@@ -136,9 +138,33 @@ const router = createBrowserRouter([
         </LoginRequiredAdmin>,
       },
       {
+        path: 'orders/add',
+        element: <LoginRequiredAdmin>
+          <UpdateOrder />
+        </LoginRequiredAdmin>,
+      },
+      {
+        path: 'orders/edit/:orderId',
+        element: <LoginRequiredAdmin>
+          <UpdateOrder />
+        </LoginRequiredAdmin>,
+      },
+      {
         path: 'products',
         element: <LoginRequiredAdmin>
           <FlowerAdmin />
+        </LoginRequiredAdmin>,
+      },
+      {
+        path: 'products/add',
+        element: <LoginRequiredAdmin>
+          <UpdateFlower />
+        </LoginRequiredAdmin>,
+      },
+      {
+        path: 'products/edit/:flowerId',
+        element: <LoginRequiredAdmin>
+          <UpdateFlower />
         </LoginRequiredAdmin>,
       },
     ]
