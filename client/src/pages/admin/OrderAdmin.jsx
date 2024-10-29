@@ -11,6 +11,8 @@ const OrderAdmin = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/orders`);
+        console.log(res.data);
+        
         setOrders(res.data);
         setFilteredOrders(res.data);
       } catch (err) {
@@ -25,7 +27,7 @@ const OrderAdmin = () => {
     setSearchTerm(term);
 
     const filtered = orders.filter(order => 
-      order.username.toLowerCase().includes(term.toLowerCase())
+      order.user_name.toLowerCase().includes(term.toLowerCase())
     );
     setFilteredOrders(filtered);
   }
@@ -36,7 +38,7 @@ const OrderAdmin = () => {
       const updatedOrders = orders.filter(order => order.id !== orderId);
       setOrders(updatedOrders);
       setFilteredOrders(updatedOrders.filter(order => 
-        order.username.toLowerCase().includes(searchTerm.toLowerCase())
+        order.user_name.toLowerCase().includes(searchTerm.toLowerCase())
       ));
     } catch (err) {
       console.error(err);
@@ -57,7 +59,7 @@ const OrderAdmin = () => {
             </button>
           </div>
         </form>
-        <Link to="/admin/users/add" className='btn-add-object'>+ <i class="fa-solid fa-user"></i></Link>
+        <Link to="/admin/orders/add" className='btn-add-object'>+ <i className="fa-solid fa-cart-shopping"></i></Link>
       </div>
       <div className="t-data" style={{height: '75vh', overflowY: 'auto'}}>
         <table className='table table-hover'>
@@ -71,17 +73,17 @@ const OrderAdmin = () => {
             </tr>
           </thead>
           <tbody style={{textAlign: 'center'}}>
-            {filteredOrders.map((user, index) => (
-              <tr key={user.id}>
+            {filteredOrders.map((order, index) => (
+              <tr key={order.id}>
                 <td>{index + 1}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
+                <td>{order.id}</td>
+                <td>{order.user_name}</td>
+                <td>{order.status}</td>
                 <td>
-                  <Link to={`/admin/users/edit/${user.id}`} className='btn-edit-object'>
+                  <Link to={`/admin/orders/edit/${order.id}`} className='btn-edit-object'>
                     <i class="fa-solid fa-pen-to-square"></i>
                   </Link>
-                  <Link className='btn-del-object' onClick={() => handleDelete(user.id)}>
+                  <Link className='btn-del-object' onClick={() => handleDelete(order.id)}>
                     <i class="fa-solid fa-trash"></i>
                   </Link>
                 </td>

@@ -6,8 +6,8 @@ import {verifyToken, verifyOrderOwnership, verifyAdmin} from '../middlewares/aut
 
 router.post('/', verifyToken, createOrder);
 router.get('/', verifyToken, getAllOrders);
-router.get('/:id', verifyToken, verifyOrderOwnership, getOrderById);
-router.put('/:id', verifyToken, verifyOrderOwnership, updateOrder);
-router.delete('/:id', verifyToken, verifyOrderOwnership, deleteOrder);
+router.get('/:id', verifyToken, getOrderById);
+router.put('/:id', verifyToken, updateOrder);
+router.delete('/:id', verifyToken, deleteOrder);
 
 export default router;

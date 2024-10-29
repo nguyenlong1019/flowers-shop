@@ -97,6 +97,67 @@ a {
         resize: none; /*ko Cho phép thay đổi chiều cao */
         min-height: 200px; /* Chiều cao tối thiểu */
     }
+
+    button {
+        display: inline-block;
+        margin-top: 12px;
+        // margin-bottom: 20px;
+        padding: 8px 24px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        color: #fff;
+        background-color: #024CAA;
+        border-radius: 6px;
+    }
+}
+
+.order-item-title {
+    margin-top: 10px;
+    margin-bottom: 16px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 24px;
+    text-align: center;
+}
+
+.order-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+    margin-bottom: 24px;
+
+    select, input {
+        display: inline-block;
+        padding: 8px 12px;
+        outline: none;
+        border: 2px solid #ddd;
+        font-size: 17px;
+        color: #222;
+    }
+
+    button {
+        outline: none;
+        cursor: pointer;
+        background-color: teal;
+        color: white;
+        border: none;
+        border-radius: 6px;
+    }
+}
+
+.add-order-item-btn {
+    outline: none;
+    cursor: pointer;
+    background-color: teal;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    display: inline-block;
+    padding: 10px 24px;
+    margin-bottom: 24px;
 }
 
 button.btn-save {
@@ -1069,6 +1130,8 @@ button.btn-save {
 
     .admin-layout {
         display: flex;
+        height: 100vh;
+        overflow: hidden;
         
         .sidebar {
             width: 250px;
@@ -1110,7 +1173,8 @@ button.btn-save {
         .content {
             padding: 20px;
             flex-grow: 1;
-
+            height: 100vh;
+            overflow-y: auto;
         }
 
         a.btn-add-object {
