@@ -69,6 +69,13 @@ a {
         border: 2px solid #ccc;
     }
 
+    input[type='checkbox'] {
+        display: inline-block;
+        margin-left: 20px;
+        text-align: left;
+        width: auto;
+    }
+
     select {
         display: block;
         width: 200px;
@@ -87,7 +94,7 @@ a {
         font-size: 17px;
         outline: none;
         border: 2px solid #ccc;
-        resize: none; /* Cho phép thay đổi chiều cao */
+        resize: none; /*ko Cho phép thay đổi chiều cao */
         min-height: 200px; /* Chiều cao tối thiểu */
     }
 }

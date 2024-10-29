@@ -13,6 +13,8 @@ const FlowerAdmin = () => {
         const res = await axios.get(`/flowers`);
         setFlowers(res.data);
         setFilteredFlowers(res.data);
+        console.log(res.data);
+        
       } catch (err) {
         console.log(err);
       }
@@ -53,11 +55,11 @@ const FlowerAdmin = () => {
           <div className="search-group">
             <input type="text" name="search" id="" value={searchTerm} onChange={handleSearch} placeholder='Tìm kiếm hoa' required/>
             <button type='submit'>
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>
         </form>
-        <Link to="/admin/flowers/add" className='btn-add-object'>+ <i class="fa-solid fa-leaf"></i></Link>
+        <Link to="/admin/products/add" className='btn-add-object'>+ <i className="fa-solid fa-leaf"></i></Link>
       </div>
       <div className="t-data" style={{height: '75vh', overflowY: 'auto'}}>
         <table className='table table-hover'>
@@ -78,17 +80,21 @@ const FlowerAdmin = () => {
               <tr key={flower.id}>
                 <td>{index + 1}</td>
                 <td>{flower.name}</td>
-                <td>{flower.category}</td>
+                <td>{flower.categoryName}</td>
                 <td>{flower.price}</td>
-                <td>{flower.image.url}</td>
-                <td>{flower.is_feature}</td>
-                <td>{flower.is_sale}</td>
                 <td>
-                  <Link to={`/admin/flowers/edit/${flower.id}`} className='btn-edit-object'>
-                    <i class="fa-solid fa-pen-to-square"></i>
+                  <div className="img-thumb">
+                    <img src={`../upload/${flower.image}`} style={{width: '100px', height: '100px', objectFit: 'cover'}} alt={flower.name} />
+                  </div>
+                </td>
+                <td>{flower.is_feature ? "Có" : "Không"}</td>
+                <td>{flower.is_sale ? "Có" : "Không"}</td>
+                <td>
+                  <Link to={`/admin/products/edit/${flower.id}`} className='btn-edit-object'>
+                    <i className="fa-solid fa-pen-to-square"></i>
                   </Link>
                   <Link className='btn-del-object' onClick={() => handleDelete(flower.id)}>
-                    <i class="fa-solid fa-trash"></i>
+                    <i className="fa-solid fa-trash"></i>
                   </Link>
                 </td>
               </tr>

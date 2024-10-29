@@ -7,11 +7,17 @@ const Flower = {
     },
 
     findAll: (callback) => {
-        db.query(`SELECT * FROM flowers`, callback);
+        const q = `
+            SELECT f.id, f.name, f.price, f.price_old, f.image, f.description, f.is_feature, f.is_sale, f.updated_at, 
+                c.name AS categoryName
+            FROM flowers f
+            JOIN categories c ON f.category_id = c.id
+        `;
+        db.query(q, callback);
     },
 
     findById: (flowerId, callback) => {
-        const q = "SELECT f.id, f.name, f.price, f.price_old, f.image, c.name as categoryName, f.updated_at FROM flowers f JOIN categories c ON f.category_id = c.id WHERE f.id = ?";
+        const q = "SELECT f.id, f.name, f.description, f.price, f.price_old, f.image, c.name as categoryName, c.id as category_id, f.updated_at, f.is_sale, f.is_feature FROM flowers f JOIN categories c ON f.category_id = c.id WHERE f.id = ?";
         db.query(q, [flowerId], callback);
     },
 
