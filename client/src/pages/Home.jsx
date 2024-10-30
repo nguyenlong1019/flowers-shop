@@ -115,13 +115,13 @@ const Home = () => {
         </h3>
         <div className='container g-4-wrapper'>
           {featuredFlowers.map(flower => (
-            <Link to="/detail" className='g-4'>
+            <Link to={`/detail/${flower.id}`} className='g-4'>
               <div className='g-4-img'>
                 <img src={`../upload/${flower.image}`} alt={flower.name} />
               </div>
               <div className='g-4-content'>
                 <h4>
-                  <Link to="/detail">
+                  <Link to={`/detail/${flower.id}`}>
                     {flower.name}
                   </Link>
                 </h4>
@@ -137,13 +137,13 @@ const Home = () => {
         <h3 className='section-title-3'>Deal of the day</h3>
         <div className="g-3-wrapper container">
           {saleFlowers.map(flower => (
-            <Link to="/detail" className="g-3">
+            <Link to={`/detail/${flower.id}`} className="g-3">
               <div className="g-3-img">
                 <img src={`../upload/${flower.image}`} alt={flower.name} />
               </div>
               <div className="g-3-info">
                 <h4>
-                  <Link to="/detail">{flower.name}</Link>
+                  <Link to={`/detail/${flower.id}`}>{flower.name}</Link>
                 </h4>
                 <span className="price">{flower.price} đ</span>
                 <span className="price-old">{flower.price_old} đ</span>

@@ -1,13 +1,39 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom';
 
 import prod1Img from '../images/product/1.jpg';
 import prod2Img from '../images/product/2.jpg';
 import prod3Img from '../images/product/3.jpg';
 import prod4Img from '../images/product/4.jpg';
 import prod5Img from '../images/product/5.jpg';
+import axios from 'axios';
 
 const Detail = () => {
+  const {flowerId} = useParams();
+
+  const [flower, setFlower] = useState({
+    name: '',
+    categoryName: '',
+    price: '',
+    priceOld: '',
+    image: '',
+    description: ''
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (flowerId) {
+          const res = await axios.get(`/flowers/${flowerId}`);
+          console.log(res.data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, [flowerId]);
+
   return (
     <div className='product-detail'>
       <div className="breadcrumb">

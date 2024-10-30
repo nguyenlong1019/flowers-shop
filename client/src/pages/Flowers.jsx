@@ -61,13 +61,13 @@ const Flowers = () => {
         </div>
         <div className='g-3-wrapper'>
           {filteredFlowers.map(flower => (
-            <Link to="/detail" className="g-3">
+            <Link to={`/detail/${flower.id}`} className="g-3">
               <div className="g-3-img">
                 <img src={`../upload/${flower.image}`} alt={flower.name} />
               </div>
               <div className="g-3-info">
                 <h4>
-                  <Link to="/">{flower.name}</Link>
+                  <Link to={`/detail/${flower.id}`}>{flower.name}</Link>
                 </h4>
                 <span className="price">{flower.price} đ</span>
                 <span className="price-old">{flower.price_old} đ</span>
