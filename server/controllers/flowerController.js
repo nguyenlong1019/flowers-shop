@@ -19,6 +19,30 @@ const getAllFlowers = (req, res) => {
     });
 };
 
+const get8Feature = (req, res) => {
+    Flower.findByFeature((err, flowers) => {
+        if (err) return res.status(500).send(err);
+
+        res.send(flowers);
+    });
+};
+
+const get3Sale = (req, res) => {
+    Flower.findBySale((err, flowers) => {
+        if (err) return res.status(500).send(err);
+
+        res.send(flowers);
+    });
+};
+
+const getAllSortCreatedAt = (req, res) => {
+    Flower.findAllByCreatedAtSort((err, flowers) => {
+        if (err) return res.status(500).send(err);
+
+        res.send(flowers);
+    });
+};
+
 const getFlowerById = (req, res) => {
     const flowerId = req.params.id;
 
@@ -51,4 +75,4 @@ const deleteFlower = (req, res) => {
 
 };
 
-export {createFlower, getAllFlowers, getFlowerById, updateFlower, deleteFlower};
+export {createFlower, getAllFlowers, get8Feature, get3Sale, getAllSortCreatedAt, getFlowerById, updateFlower, deleteFlower};

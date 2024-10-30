@@ -16,6 +16,43 @@ const Flower = {
         db.query(q, callback);
     },
 
+    findByFeature: (callback) => {
+        const q = `
+            SELECT f.id, f.name, f.price, f.price_old, f.image, f.description, f.is_feature, f.is_sale, f.created_at,
+                c.name AS categoryName
+            FROM flowers f
+            JOIN categories c ON f.category_id = c.id
+            WHERE f.is_feature = TRUE
+            ORDER BY f.created_at DESC
+            LIMIT 8
+        `;
+        db.query(q, callback);
+    },
+
+    findBySale: (callback) => {
+        const q = `
+            SELECT f.id, f.name, f.price, f.price_old, f.image, f.description, f.is_feature, f.is_sale, f.created_at,
+                c.name AS categoryName
+            FROM flowers f
+            JOIN categories c ON f.category_id = c.id
+            WHERE f.is_sale = TRUE
+            ORDER BY f.created_at DESC
+            LIMIT 3
+        `;
+        db.query(q, callback);
+    },
+
+    findAllByCreatedAtSort: (callback) => {
+        const q = `
+            SELECT f.id, f.name, f.price, f.price_old, f.image, f.description, f.is_feature, f.is_sale, f.created_at,
+                c.name AS categoryName
+            FROM flowers f
+            JOIN categories c ON f.category_id = c.id
+            ORDER BY f.created_at DESC
+        `;
+        db.query(q, callback);
+    },
+
     findById: (flowerId, callback) => {
         const q = "SELECT f.id, f.name, f.description, f.price, f.price_old, f.image, c.name as categoryName, c.id as category_id, f.updated_at, f.is_sale, f.is_feature FROM flowers f JOIN categories c ON f.category_id = c.id WHERE f.id = ?";
         db.query(q, [flowerId], callback);
