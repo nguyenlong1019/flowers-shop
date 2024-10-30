@@ -51,7 +51,7 @@ const Detail = () => {
         </div>
         <div className="product-info">
           <h2 className="product-title">
-            Hoa hồng
+            {flower.name}
           </h2>
           <p>
             <span className="price">80,000 đ</span>
