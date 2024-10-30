@@ -20,7 +20,7 @@ const getAllFlowers = (req, res) => {
 };
 
 const get8Feature = (req, res) => {
-    Flower.findByFeature((err, flowers) => {
+    Flower.findByFeature((err, flowers) => {        
         if (err) return res.status(500).send(err);
 
         res.send(flowers);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import cate1Img from '../images/category/home1-category-1.jpg';
 import cate2Img from '../images/category/home1-category-2.jpg';
@@ -31,9 +31,34 @@ import brand2Img from '../images/brand/2.png';
 import brand3Img from '../images/brand/3.png';
 import brand4Img from '../images/brand/4.png';
 import brand5Img from '../images/brand/5.png';
+import axios from 'axios';
 
 
 const Home = () => {
+  const [featuredFlowers, setFeaturedFlowers] = useState([]);
+  const [saleFlowers, setSaleFlowers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const featuredResponse = await axios.get('/flowers/featured-products');
+        setFeaturedFlowers(featuredResponse.data);
+        console.log(featuredResponse.data);
+        
+
+        const saleResponse = await axios.get('/flowers/sale-products');
+        setSaleFlowers(saleResponse.data);
+        console.log(saleResponse.data);
+        
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData(); // Gọi hàm async bên trong useEffect
+  }, []);
+
+
   return (
     <div className='home container-fluid'>
       <div className="home-intro">
