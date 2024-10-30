@@ -114,167 +114,42 @@ const Home = () => {
           Sản phẩm nổi bật
         </h3>
         <div className='container g-4-wrapper'>
-          <Link to="/detail" className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod1Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/detail">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </Link>
-
-          <Link to="/detail" className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod2Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </Link>
-
-          <Link to="/detail" className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod3Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </Link>
-
-          <Link to="/detail" className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod4Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </Link>
-
-          <Link to="/detail" className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod5Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </Link>
-
-          <Link to="/detail" className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod6Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </Link>
-
-          <Link to="/detail" className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod7Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </Link>
-
-          <Link to="/detail" className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod8Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </Link>
+          {featuredFlowers.map(flower => (
+            <Link to="/detail" className='g-4'>
+              <div className='g-4-img'>
+                <img src={`../upload/${flower.image}`} alt={flower.name} />
+              </div>
+              <div className='g-4-content'>
+                <h4>
+                  <Link to="/detail">
+                    {flower.name}
+                  </Link>
+                </h4>
+                <span className='price'>{flower.price} đ</span>
+                <span className='price-old'>{flower.price_old} đ</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
       
       <div className="deal-of-the-day">
         <h3 className='section-title-3'>Deal of the day</h3>
         <div className="g-3-wrapper container">
-          <Link to="/detail" className="g-3">
-            <div className="g-3-img">
-              <img src={prod1Img} alt="" />
-            </div>
-            <div className="g-3-info">
-              <h4>
-                <Link>Hoa Hồng</Link>
-              </h4>
-              <span className="price">90,000 đ</span>
-              <span className="price-old">110,000 đ</span>
-            </div>
-          </Link>
-          <Link to="/detail" className="g-3">
-            <div className="g-3-img">
-              <img src={prod1Img} alt="" />
-            </div>
-            <div className="g-3-info">
-              <h4>
-                <Link>Hoa Hồng</Link>
-              </h4>
-              <span className="price">90,000 đ</span>
-              <span className="price-old">110,000 đ</span>
-            </div>
-          </Link>
-          <Link to="/detail" className="g-3">
-            <div className="g-3-img">
-              <img src={prod1Img} alt="" />
-            </div>
-            <div className="g-3-info">
-              <h4>
-                <Link>Hoa Hồng</Link>
-              </h4>
-              <span className="price">90,000 đ</span>
-              <span className="price-old">110,000 đ</span>
-            </div>
-          </Link>
+          {saleFlowers.map(flower => (
+            <Link to="/detail" className="g-3">
+              <div className="g-3-img">
+                <img src={`../upload/${flower.image}`} alt={flower.name} />
+              </div>
+              <div className="g-3-info">
+                <h4>
+                  <Link to="/detail">{flower.name}</Link>
+                </h4>
+                <span className="price">{flower.price} đ</span>
+                <span className="price-old">{flower.price_old} đ</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
 
