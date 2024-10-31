@@ -22,6 +22,12 @@ const Detail = () => {
 
   const [featuredFlowers, setFeaturedFlowers] = useState([]);
 
+  const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       await axios.get('/flowers/featured-products').then(response => setFeaturedFlowers(response.data));
@@ -44,6 +50,30 @@ const Detail = () => {
     };
     fetchData();
   }, [flowerId]);
+
+  const addToCart = () => {
+    const newCartItem = {
+      id: flowerId,
+      name: flower.name,
+      price: flower.price,
+      quantity: quantity,
+      image: flower.image
+    };
+
+    const updatedCart = [...cart];
+    const existingItemIndex = updatedCart.findIndex((item) => item.id === flowerId);
+    if (existingItemIndex >= 0) {
+      // Nếu sản phẩm đã có trong giỏ hàng, cập nhật số lượng
+      updatedCart[existingItemIndex].quantity += quantity;
+    } else {
+      // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới
+      updatedCart.push(newCartItem);
+    }
+
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart)); // Lưu vào localStorage
+    alert("Thêm sản phẩm vào giỏ hàng thành công!");
+  }
 
   return (
     <div className='product-detail'>
@@ -75,15 +105,15 @@ const Detail = () => {
           <div className="quantity">
             <div className="cart-plus-minus">
               <div className='group-qty'>
-                <button className="dec qtybutton">
+                <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} className="dec qtybutton">
                   <i class="fa-solid fa-minus"></i>
                 </button>
-                <input type="text" value="0" className="cart-plus-minus-box" />
-                <button className="inc qtybutton">
+                <input type="number" min="1" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value) || 1)} className="cart-plus-minus-box" />
+                <button onClick={() => setQuantity(quantity + 1)} className="inc qtybutton">
                   <i class="fa-solid fa-plus"></i>
                 </button>
               </div>
-              <button className="add-to-cart">Add to Cart</button>
+              <button onClick={addToCart} className="add-to-cart">Add to Cart</button>
               <button className="add-to-wishlist">Add to Wishlist</button>
             </div>
           </div>
