@@ -13,19 +13,30 @@ const Detail = () => {
 
   const [flower, setFlower] = useState({
     name: '',
-    categoryName: '',
+    categoryId: '',
     price: '',
     priceOld: '',
     image: '',
     description: ''
   });
 
+  const [featuredFlowers, setFeaturedFlowers] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
+      await axios.get('/flowers/featured-products').then(response => setFeaturedFlowers(response.data));
       try {
         if (flowerId) {
           const res = await axios.get(`/flowers/${flowerId}`);
           console.log(res.data);
+          setFlower({
+            name: res.data[0].name,
+            categoryId: res.data[0].category_id,
+            price: res.data[0].price,
+            priceOld: res.data[0].price_old,
+            image: res.data[0].image,
+            description: res.data[0].description,
+          });
         }
       } catch (err) {
         console.error(err);
@@ -47,23 +58,19 @@ const Detail = () => {
 
       <div className="product">
         <div className="product-img">
-          <img src={prod5Img} alt="" />
+          <img src={`../upload/${flower.image}`} alt={flower.name} />
         </div>
         <div className="product-info">
           <h2 className="product-title">
-            Hoa hồng
+            {flower.name}
           </h2>
           <p>
-            <span className="price">80,000 đ</span>
-            <span className='price-old'>110,000 đ</span>
+            <span className="price">{flower.price} đ</span>
+            <span className='price-old'>{flower.priceOld} đ</span>
           </p>
           <p className='sku'>SKU: 12345</p>
           <p className="desc">
-            I must explain to you how all this mistaken idea of  
-            denouncing pleasure and praising pain was born and I will 
-            give you a complete account of the system, and expound the 
-            actual teachings of the great explorer of the truth, the 
-            master-builder of human happiness.
+            {flower.description}
           </p>
           <div className="quantity">
             <div className="cart-plus-minus">
@@ -105,42 +112,7 @@ const Detail = () => {
           </div>
           <div className='product-detail-body'>
             <p>
-              On the other hand, we denounce with righteous 
-              indignation and dislike men who are so beguiled 
-              and demoralized by the charms of pleasure of the 
-              moment, so blinded by desire, that they cannot 
-              foresee the pain and trouble that are bound to 
-              ensue; and equal blame belongs to those who fail 
-              in their duty through weakness of will, which is 
-              the same as saying through shrinking from toil 
-              and pain. These cases are perfectly simple and 
-              easy to distinguish. In a free hour, when our 
-              power of choice is untrammelled and when nothing 
-              prevents our being able to do what we like best, 
-              every pleasure is to be welcomed and every pain 
-              avoided. But in certain circumstances and owing 
-              to the claims of duty or the obligations of 
-              business it will frequently occur that pleasures 
-              have to be repudiated and annoyances accepted. 
-              The wise man therefore always holds in these 
-              matters to this principle of selection: he 
-              rejects pleasures to secure other greater 
-              pleasures, or else he endures pains to avoid 
-              worse pains.
-            </p>
-            <p>
-              Et harum quidem rerum facilis est et expedita 
-              distinctio. Nam libero tempore, cum soluta nobis 
-              est eligendi optio cumque nihil impedit quo minus 
-              id quod maxime placeat facere possimus, omnis 
-              voluptas assumenda est, omnis dolor repellendus. 
-              Temporibus autem quibusdam et aut officiis 
-              debitis aut rerum necessitatibus saepe eveniet ut 
-              et voluptates repudiandae sint et molestiae non 
-              recusandae. Itaque earum rerum hic tenetur a 
-              sapiente delectus, ut aut reiciendis voluptatibus 
-              maiores alias consequatur aut perferendis 
-              doloribus asperiores repellat.
+              {flower.description}
             </p>
           </div>
         </div>
@@ -154,65 +126,22 @@ const Detail = () => {
           Sản phẩm nổi bật
         </h3>
         <div className='container g-4-wrapper'>
-          <div className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod1Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </div>
-
-          <div className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod2Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </div>
-
-          <div className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod3Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </div>
-
-          <div className='g-4'>
-            <div className='g-4-img'>
-              <img src={prod4Img} alt='' />
-            </div>
-            <div className='g-4-content'>
-              <h4>
-                <Link to="/">
-                  Hoa cúc hồng
-                </Link>
-              </h4>
-              <span className='price'>80.000 đ</span>
-              <span className='price-old'>110.000 đ</span>
-            </div>
-          </div>
+          {featuredFlowers.map(flower => (
+            <Link to={`/detail/${flower.id}`} className='g-4'>
+              <div className='g-4-img'>
+                <img src={`../upload/${flower.image}`} alt={flower.name} />
+              </div>
+              <div className='g-4-content'>
+                <h4>
+                  <Link to={`/detail/${flower.id}`}>
+                    {flower.name}
+                  </Link>
+                </h4>
+                <span className='price'>{flower.price} đ</span>
+                <span className='price-old'>{flower.price_old} đ</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
