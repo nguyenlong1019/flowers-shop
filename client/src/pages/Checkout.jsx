@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Checkout = () => {
+  
+
   return (
     <div className='checkout-page'>
       
@@ -18,7 +20,22 @@ const Checkout = () => {
           <h3 className="checkout-title">
             Billing details
           </h3>
-
+          <div className="form-group">
+            <label htmlFor="">Địa chỉ giao hàng *</label>
+            <input type="text" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="">Thành phố *</label>
+            <input type="text" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="">Postal Code *</label>
+            <input type="text" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="">Số điện thoại *</label>
+            <input type="text" required />
+          </div>
         </div>
 
         <div className="checkout-order">

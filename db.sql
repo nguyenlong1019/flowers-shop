@@ -45,6 +45,8 @@ CREATE TABLE orders (
   shipping_phone VARCHAR(20) NOT NULL,
   shipping_status ENUM('not shipped', 'shipped', 'delivered') DEFAULT 'not shipped',
   status ENUM('pending', 'completed', 'canceled') DEFAULT 'pending',
+  payment_method ENUM('COD', 'internet_banking') DEFAULT 'COD',
+  payment_status ENUM('unpaid', 'paid', 'failed') DEFAULT 'unpaid';
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
