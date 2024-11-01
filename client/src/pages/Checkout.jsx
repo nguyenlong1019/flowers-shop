@@ -21,6 +21,7 @@ const Checkout = () => {
   });
 
   const [paymentData, setPaymentData] = useState({
+    'orderId': '',
     'amount': 0,
     'bankCode': 'VNBANK',
     'language': 'vn'
@@ -62,7 +63,7 @@ const Checkout = () => {
       shipping_postal_code: postalCode,
       shipping_phone: phone,
       payment_method: paymentType,
-      payment_status: 'unpaid',
+      payment_status: paymentType === 'internet_banking' ? 'paid' : 'unpaid' ,
       shipping_status: 'not shipped',
       status: 'pending',
       items: cart,
@@ -70,12 +71,17 @@ const Checkout = () => {
 
     try {
       const orderRes = await axios.post('/orders', orderData);
-      // const orderId = orderRes.data.orderId;
+      const orderId = orderRes.data.orderId;
+      setPaymentData(prevData => ({
+          ...prevData,
+          orderId: orderId,
+      }));
       console.log(orderRes);
-
+      
       if (paymentType === 'internet_banking') {
         const res = await axios.post('/payment/create_payment_url', paymentData);
         // console.log(res);
+        localStorage.removeItem('cart');
         window.location.href = res.data;
       } else {
         alert("Đặt hàng thành công với phương thức COD!");

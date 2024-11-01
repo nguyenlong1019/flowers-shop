@@ -19,7 +19,8 @@ router.post('/create_payment_url', function(req, res, next) {
     let secretKey = 'KYNYU155OS08SSGNQXRQ0R0HQ1MG2C8O'
     let vnpUrl = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'
     let returnUrl = 'http://localhost:8888/api/order/vnpay_return'
-    let orderId = moment(date).format('DDHHmmss');
+    let orderId = moment(date).format('DDHHmmss'); 
+    // let orderId = req.body.orderId;
 
     // lay tu client 
     let amount = req.body.amount;

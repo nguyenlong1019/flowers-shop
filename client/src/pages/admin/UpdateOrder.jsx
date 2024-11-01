@@ -16,6 +16,8 @@ const UpdateOrder = () => {
     shipping_phone: '',
     shipping_status: 'not shipped',
     status: 'pending',
+    payment_method: 'COD', // Thêm payment_method
+    payment_status: 'unpaid', // Thêm payment_status
   });
   
   const [orderItems, setOrderItems] = useState([{flower_id: '', quantity: 1, price: ''}]);
@@ -40,6 +42,8 @@ const UpdateOrder = () => {
           shipping_phone: order.shipping_phone,
           shipping_status: order.shipping_status,
           status: order.status,
+          payment_method: order.payment_method, // Thêm payment_method
+          payment_status: order.payment_status, // Thêm payment_status
         });
         setOrderItems(order.order_items); // Lưu các mục đơn hàng
       });
@@ -93,7 +97,7 @@ const UpdateOrder = () => {
 
     const orderPayload = {
       ...orderData,
-      order_items: orderItems,
+      items: orderItems,
     };
 
     try {
@@ -186,6 +190,23 @@ const UpdateOrder = () => {
             <option value="pending">Pending</option>
             <option value="completed">Completed</option>
             <option value="canceled">Canceled</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Phương thức thanh toán</label>
+          <select name="payment_method" value={orderData.payment_method} onChange={handleOrderChange}>
+            <option value="COD">COD</option>
+            <option value="internet_banking">Internet Banking</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label>Trạng thái thanh toán</label>
+          <select name="payment_status" value={orderData.payment_status} onChange={handleOrderChange}>
+            <option value="unpaid">Unpaid</option>
+            <option value="paid">Paid</option>
+            <option value="failed">Failed</option>
           </select>
         </div>
 

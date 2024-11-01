@@ -29,3 +29,4 @@ State Management: Quản lý thông tin giỏ hàng, đăng nhập của ngườ
 Responsive Design: Thiết kế giao diện thân thiện ng dùng di động
 
 
+Còn trang order success, order list và sửa lại order trong admin 

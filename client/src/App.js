@@ -25,6 +25,9 @@ import UpdateUser from './pages/admin/UpdateUser';
 import UpdateCategory from './pages/admin/UpdateCategory';
 import UpdateFlower from './pages/admin/UpdateFlower';
 import UpdateOrder from './pages/admin/UpdateOrder'
+import OrderSuccess from './pages/OrderSuccess';
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentFailure from './pages/PaymentFailure';
 
 const Layout = () => {
   return (
@@ -69,6 +72,24 @@ const router = createBrowserRouter([
         path: "/checkout",
         element: <LoginRequired>
           <Checkout />
+        </LoginRequired>,
+      },
+      {
+        path: "/order-success",
+        element: <LoginRequired>
+          <OrderSuccess />
+        </LoginRequired>,
+      },
+      {
+        path: "/payment-success",
+        element: <LoginRequired>
+          <PaymentSuccess />
+        </LoginRequired>,
+      },
+      {
+        path: "/payment-failure",
+        element: <LoginRequired>
+          <PaymentFailure />
         </LoginRequired>,
       },
       {
