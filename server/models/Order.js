@@ -30,7 +30,7 @@ const Order = {
                     // Thêm các mục trong đơn hàng (order_items)
                     const itemsData = orderItems.map((item) => [
                         orderId,
-                        item.flower_id,
+                        item.id,
                         item.quantity,
                         item.price,
                     ]);
@@ -117,7 +117,7 @@ const Order = {
                         // Thêm các mục đơn hàng mới
                         const itemsData = orderItems.map((item) => [
                             orderId,
-                            item.flower_id,
+                            item.id,
                             item.quantity,
                             item.price,
                         ]);

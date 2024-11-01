@@ -18,7 +18,7 @@ router.post('/create_payment_url', function(req, res, next) {
     let tmnCode = 'DEND955G'
     let secretKey = 'KYNYU155OS08SSGNQXRQ0R0HQ1MG2C8O'
     let vnpUrl = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html'
-    let returnUrl = 'http://localhost:8888/order/vnpay_return'
+    let returnUrl = 'http://localhost:8888/api/order/vnpay_return'
     let orderId = moment(date).format('DDHHmmss');
 
     // lay tu client 
@@ -56,8 +56,8 @@ router.post('/create_payment_url', function(req, res, next) {
     let signed = hmac.update(new Buffer(signData, 'utf-8')).digest("hex"); 
     vnp_Params['vnp_SecureHash'] = signed;
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
-
-    res.redirect(vnpUrl)
+    res.json(vnpUrl);
+    // res.redirect(vnpUrl)
 });
 
 function sortObject(obj) {

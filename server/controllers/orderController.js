@@ -12,10 +12,18 @@ const createOrder = (req, res) => {
         status = 'pending', // Giá trị mặc định
         payment_method, // Phương thức thanh toán từ `req.body`
         payment_status = 'unpaid', // Giá trị mặc định cho trạng thái thanh toán
-        order_items // Các mục đơn hàng từ `req.body`
+        items // Các mục đơn hàng từ `req.body`
     } = req.body;
+    // console.log(req.body);
+    // console.log(items);
+    // console.log(status);
+    
+    
+    
 
-  if (!order_items || order_items.length === 0) {
+  if (!items || items.length === 0) {
+        console.log("Here");
+        
       return res.status(400).json({ message: 'Order items are required' });
   }
 
@@ -33,8 +41,10 @@ const createOrder = (req, res) => {
           payment_method,
           payment_status
       },
-      order_items,
+      items,
       (err, result) => {
+            console.log(err);
+            
           if (err) return res.status(500).send(err);
 
           res.status(201).json({ message: 'Order created successfully!', orderId: result.orderId });
@@ -73,10 +83,10 @@ const updateOrder = (req, res) => {
     status,
     payment_method, // Phương thức thanh toán có thể được cập nhật
     payment_status, // Cập nhật trạng thái thanh toán
-    order_items, // Các mục đơn hàng mới
+    items, // Các mục đơn hàng mới
   } = req.body;
 
-  if (!order_items || order_items.length === 0) {
+  if (!items || items.length === 0) {
       return res.status(400).json({ message: 'Order items are required' });
   }
 
@@ -93,7 +103,7 @@ const updateOrder = (req, res) => {
           payment_method,
           payment_status
       },
-      order_items,
+      items,
       (err, result) => {
           if (err) return res.status(500).json({ error: err.message });
           res.status(200).json({ message: "Order updated successfully!" });

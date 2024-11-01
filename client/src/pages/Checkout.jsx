@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {AuthContext} from '../context/authContext'
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 
 const Checkout = () => {
   const navigate = useNavigate();
-
   const {currentUser} = useContext(AuthContext);
+
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : [];
@@ -30,9 +30,13 @@ const Checkout = () => {
   // bankCode: value = 'VNBANK'
   // language: value = 'vn'
 
+  useEffect(() => {
+    calculateTotal();
+  }, [cart]);
+
   const calculateTotal = () => {
-    let totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    setPaymentData({...paymentData, amount: totalPrice});
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    setPaymentData(prevData => ({ ...prevData, amount: totalPrice }));
     return totalPrice;
   };
 
@@ -60,17 +64,19 @@ const Checkout = () => {
       payment_method: paymentType,
       payment_status: 'unpaid',
       shipping_status: 'not shipped',
-      status: 'pedding',
+      status: 'pending',
       items: cart,
     };
 
     try {
-      // const orderRes = await axios.post('/orders', orderData);
+      const orderRes = await axios.post('/orders', orderData);
       // const orderId = orderRes.data.orderId;
-      // console.log(orderRes);
+      console.log(orderRes);
 
       if (paymentType === 'internet_banking') {
-        await axios.post('/payment/create_payment_url', paymentData);
+        const res = await axios.post('/payment/create_payment_url', paymentData);
+        // console.log(res);
+        window.location.href = res.data;
       } else {
         alert("Đặt hàng thành công với phương thức COD!");
         localStorage.removeItem('cart');

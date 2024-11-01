@@ -12,6 +12,7 @@ import categoryRoutes from './routes/categoryRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import orderItemRoutes from './routes/orderItemRoutes.js';
 import paymentRoutes from './routes/payment.js';
+import returnRoutes from './routes/order.js';
 
 const app = express();
 app.use(express.json());
@@ -46,6 +47,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/order-items', orderItemRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/order', returnRoutes);
 
 const PORT = 8888;
 app.listen(PORT, () => {
