@@ -7,7 +7,7 @@ const Order = {
 
             // Tạo đơn hàng mới
             db.query(
-                `INSERT INTO orders (user_id, total_price, shipping_address, shipping_city, shipping_postal_code, shipping_phone, shipping_status, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+                `INSERT INTO orders (user_id, total_price, shipping_address, shipping_city, shipping_postal_code, shipping_phone, shipping_status, status, payment_method, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     orderData.user_id,
                     orderData.total_price,
@@ -17,6 +17,8 @@ const Order = {
                     orderData.shipping_phone,
                     orderData.shipping_status,
                     orderData.status,
+                    orderData.payment_method, 
+                    orderData.payment_status
                 ],
                 (err, result) => {
                     if (err) {
@@ -64,8 +66,6 @@ const Order = {
     },
 
     findById: (orderId, callback) => {
-        db.query(`SELECT * FROM orders WHERE id = ?`, [orderId], callback);
-    },findById: (orderId, callback) => {
         const queryOrder = `SELECT * FROM orders WHERE id = ?`;
         const queryOrderItems = `SELECT * FROM order_items WHERE order_id = ?`;
 
@@ -90,7 +90,7 @@ const Order = {
 
             // Cập nhật thông tin đơn hàng
             db.query(
-                `UPDATE orders SET total_price = ?, shipping_address = ?, shipping_city = ?, shipping_postal_code = ?, shipping_phone = ?, shipping_status = ?, status = ? WHERE id = ?`,
+                `UPDATE orders SET total_price = ?, shipping_address = ?, shipping_city = ?, shipping_postal_code = ?, shipping_phone = ?, shipping_status = ?, status = ?, payment_method = ?, payment_status = ? WHERE id = ?`,
                 [
                     orderData.total_price,
                     orderData.shipping_address,
@@ -99,6 +99,8 @@ const Order = {
                     orderData.shipping_phone,
                     orderData.shipping_status,
                     orderData.status,
+                    orderData.payment_method,
+                    orderData.payment_status,
                     orderId,
                 ],
                 (err) => {
@@ -143,7 +145,27 @@ const Order = {
     },
 
     delete: (orderId, callback) => {
-        db.query(`DELETE FROM orders WHERE id = ?`, [orderId], callback);
+        db.beginTransaction((err) => {
+            if (err) return callback(err);
+
+            // Xóa các mục trong order_items trước
+            db.query(`DELETE FROM order_items WHERE order_id = ?`, [orderId], (err) => {
+                if (err) return db.rollback(() => callback(err));
+
+                // Sau đó xóa đơn hàng trong orders
+                db.query(`DELETE FROM orders WHERE id = ?`, [orderId], (err) => {
+                    if (err) return db.rollback(() => callback(err));
+
+                    // Hoàn tất giao dịch
+                    db.commit((err) => {
+                        if (err) {
+                            return db.rollback(() => callback(err));
+                        }
+                        callback(null, { message: "Order deleted successfully!" });
+                    });
+                });
+            });
+        });
     },
 };
 

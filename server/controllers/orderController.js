@@ -1,17 +1,19 @@
 import Order from '../models/Order.js';
 
 const createOrder = (req, res) => {
-  const {
-      user_id,
-      total_price,
-      shipping_address,
-      shipping_city,
-      shipping_postal_code,
-      shipping_phone,
-      shipping_status = 'not shipped', // Giá trị mặc định
-      status = 'pending', // Giá trị mặc định
-      order_items // Các mục đơn hàng từ `req.body`
-  } = req.body;
+    const {
+        user_id,
+        total_price,
+        shipping_address,
+        shipping_city,
+        shipping_postal_code,
+        shipping_phone,
+        shipping_status = 'not shipped', // Giá trị mặc định
+        status = 'pending', // Giá trị mặc định
+        payment_method, // Phương thức thanh toán từ `req.body`
+        payment_status = 'unpaid', // Giá trị mặc định cho trạng thái thanh toán
+        order_items // Các mục đơn hàng từ `req.body`
+    } = req.body;
 
   if (!order_items || order_items.length === 0) {
       return res.status(400).json({ message: 'Order items are required' });
@@ -28,6 +30,8 @@ const createOrder = (req, res) => {
           shipping_phone,
           shipping_status,
           status,
+          payment_method,
+          payment_status
       },
       order_items,
       (err, result) => {
@@ -60,14 +64,16 @@ const getOrderById = (req, res) => {
 const updateOrder = (req, res) => {
   const orderId = req.params.id;
   const {
-      total_price,
-      shipping_address,
-      shipping_city,
-      shipping_postal_code,
-      shipping_phone,
-      shipping_status,
-      status,
-      order_items, // Các mục đơn hàng mới
+    total_price,
+    shipping_address,
+    shipping_city,
+    shipping_postal_code,
+    shipping_phone,
+    shipping_status,
+    status,
+    payment_method, // Phương thức thanh toán có thể được cập nhật
+    payment_status, // Cập nhật trạng thái thanh toán
+    order_items, // Các mục đơn hàng mới
   } = req.body;
 
   if (!order_items || order_items.length === 0) {
@@ -84,6 +90,8 @@ const updateOrder = (req, res) => {
           shipping_phone,
           shipping_status,
           status,
+          payment_method,
+          payment_status
       },
       order_items,
       (err, result) => {

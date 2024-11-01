@@ -23,9 +23,11 @@ router.get('/vnpay_return', function (req, res, next) {
 
     if(secureHash === signed){
         //Kiem tra xem du lieu trong db co hop le hay khong va thong bao ket qua
-        res.render('success', {code: vnp_Params['vnp_ResponseCode']})
+        // res.render('success', {code: vnp_Params['vnp_ResponseCode']})
+        res.status(200).json({ message: 'Payment successful', code: vnp_Params['vnp_ResponseCode'] });
     } else{
-        res.render('success', {code: '97'})
+        // res.render('success', {code: '97'})
+        res.status(400).json({ message: 'Payment verification failed', code: '97' });
     }
 });
 

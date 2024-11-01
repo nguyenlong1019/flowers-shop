@@ -1,14 +1,88 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import {AuthContext} from '../context/authContext'
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 const Checkout = () => {
+  const navigate = useNavigate();
+
+  const {currentUser} = useContext(AuthContext);
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
+  const [billingInfo, setBillingInfo] = useState({
+    address: '',
+    city: '',
+    postalCode: '',
+    phone: '',
+    paymentType: 'COD'
+  });
+
+  const [paymentData, setPaymentData] = useState({
+    'amount': 0,
+    'bankCode': 'VNBANK',
+    'language': 'vn'
+  });
+
+  // amount: 
+  // bankCode: value = 'VNBANK'
+  // language: value = 'vn'
+
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    let totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    setPaymentData({...paymentData, amount: totalPrice});
+    return totalPrice;
   };
+
+  const handleChange = (e) => {
+    setBillingInfo({...billingInfo, [e.target.name]: e.target.value});
+  };
+
+  const handleCheckout = async () => {
+    console.log("Clicked!");
+    
+    const {address, city, postalCode, phone, paymentType} = billingInfo;
+
+    if (!address || !city || !postalCode || !phone) {
+      alert("Vui lòng điền đầy đủ thông tin!");
+      return;
+    }
+
+    const orderData = {
+      user_id: currentUser.id,
+      total_price: calculateTotal(),
+      shipping_address: address, 
+      shipping_city: city,
+      shipping_postal_code: postalCode,
+      shipping_phone: phone,
+      payment_method: paymentType,
+      payment_status: 'unpaid',
+      shipping_status: 'not shipped',
+      status: 'pedding',
+      items: cart,
+    };
+
+    try {
+      // const orderRes = await axios.post('/orders', orderData);
+      // const orderId = orderRes.data.orderId;
+      // console.log(orderRes);
+
+      if (paymentType === 'internet_banking') {
+        await axios.post('/payment/create_payment_url', paymentData);
+      } else {
+        alert("Đặt hàng thành công với phương thức COD!");
+        localStorage.removeItem('cart');
+        navigate('/order-success'); // Điều hướng tới trang thành công
+      }
+      
+    } catch (err) {
+      console.error("Lối khi đặt hàng: ", err);
+      alert("Đặt hàng không thành công, vui lòng thử lại!");
+    }
+
+   }
 
   return (
     <div className='checkout-page'>
@@ -29,19 +103,19 @@ const Checkout = () => {
           </h3>
           <div className="form-group">
             <label htmlFor="">Địa chỉ giao hàng *</label>
-            <input type="text" required />
+            <input value={billingInfo.address} name='address' onChange={handleChange} type="text" required />
           </div>
           <div className="form-group">
             <label htmlFor="">Thành phố *</label>
-            <input type="text" required />
+            <input value={billingInfo.city} name='city' onChange={handleChange} type="text" required />
           </div>
           <div className="form-group">
             <label htmlFor="">Postal Code *</label>
-            <input type="text" required />
+            <input value={billingInfo.postalCode} name='postalCode' onChange={handleChange} type="text" required />
           </div>
           <div className="form-group">
             <label htmlFor="">Số điện thoại *</label>
-            <input type="text" required />
+            <input value={billingInfo.phone} name='phone' onChange={handleChange} type="text" required />
           </div>
         </div>
 
@@ -55,23 +129,21 @@ const Checkout = () => {
               <div className="col col-6" style={{textAlign: 'center'}}>TOTAL</div>
             </div>
             {cart.map(item => (
-              <>
-                <div className="row" style={{borderTop: '1px solid #ddd', padding: '12px 0'}}>
-                  <div className="col col-6">{item.name} x {item.quantity}</div>
-                  <div className="col col-6" style={{textAlign: 'center'}}>{(item.price * item.quantity).toLocaleString()} đ</div>
-                </div>
-              </>
+              <div key={item.id} className="row" style={{borderTop: '1px solid #ddd', padding: '12px 0'}}>
+                <div className="col col-6">{item.name} x {item.quantity}</div>
+                <div className="col col-6" style={{textAlign: 'center'}}>{(item.price * item.quantity).toLocaleString()} đ</div>
+              </div>
             ))}
           </div>
           
           <div className="form-group">
             <label htmlFor="">Hình thức thanh toán</label>
-            <select style={{width: 'max-content'}} name="payment-type" id="payment-type">
-              <option style={{width: 'max-content'}} value="cod">Thanh toán khi nhận hàng</option>
+            <select style={{width: 'max-content'}} name="paymentType" value={billingInfo.paymentType} onChange={handleChange} id="paymentType">
+              <option style={{width: 'max-content'}} value="COD">Thanh toán khi nhận hàng</option>
               <option style={{width: 'max-content'}} value="internet_banking">VNPay</option>
             </select>
           </div>
-          <button className='btn-checkout' type='submit' onClick={() => console.log("Clicked!")}>Process Checkout</button>
+          <button className='btn-checkout' type='submit' onClick={handleCheckout} >Process Checkout</button>
         </div>
       </div>
 
