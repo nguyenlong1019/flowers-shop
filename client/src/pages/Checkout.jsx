@@ -13,6 +13,7 @@ const Checkout = () => {
   });
 
   const [billingInfo, setBillingInfo] = useState({
+    recipientName: '',
     address: '',
     city: '',
     postalCode: '',
@@ -48,15 +49,16 @@ const Checkout = () => {
   const handleCheckout = async () => {
     console.log("Clicked!");
     
-    const {address, city, postalCode, phone, paymentType} = billingInfo;
+    const {recipientName, address, city, postalCode, phone, paymentType} = billingInfo;
 
-    if (!address || !city || !postalCode || !phone) {
+    if (!recipientName || !address || !city || !postalCode || !phone) {
       alert("Vui lòng điền đầy đủ thông tin!");
       return;
     }
 
     const orderData = {
       user_id: currentUser.id,
+      recipient_name: recipientName,
       total_price: calculateTotal(),
       shipping_address: address, 
       shipping_city: city,
@@ -112,6 +114,10 @@ const Checkout = () => {
           <h3 className="checkout-title">
             Billing details
           </h3>
+          <div className="form-group">
+            <label htmlFor="">Tên người nhận *</label>
+            <input value={billingInfo.recipientName} name='recipientName' onChange={handleChange} type="text" required />
+          </div>
           <div className="form-group">
             <label htmlFor="">Địa chỉ giao hàng *</label>
             <input value={billingInfo.address} name='address' onChange={handleChange} type="text" required />

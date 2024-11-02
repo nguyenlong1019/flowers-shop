@@ -7,9 +7,10 @@ const Order = {
 
             // Tạo đơn hàng mới
             db.query(
-                `INSERT INTO orders (user_id, total_price, shipping_address, shipping_city, shipping_postal_code, shipping_phone, shipping_status, status, payment_method, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                `INSERT INTO orders (user_id, recipient_name, total_price, shipping_address, shipping_city, shipping_postal_code, shipping_phone, shipping_status, status, payment_method, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     orderData.user_id,
+                    orderData.recipient_name,
                     orderData.total_price,
                     orderData.shipping_address,
                     orderData.shipping_city,
@@ -90,8 +91,9 @@ const Order = {
 
             // Cập nhật thông tin đơn hàng
             db.query(
-                `UPDATE orders SET total_price = ?, shipping_address = ?, shipping_city = ?, shipping_postal_code = ?, shipping_phone = ?, shipping_status = ?, status = ?, payment_method = ?, payment_status = ? WHERE id = ?`,
+                `UPDATE orders SET recipient_name = ?, total_price = ?, shipping_address = ?, shipping_city = ?, shipping_postal_code = ?, shipping_phone = ?, shipping_status = ?, status = ?, payment_method = ?, payment_status = ? WHERE id = ?`,
                 [
+                    orderData.recipient_name,
                     orderData.total_price,
                     orderData.shipping_address,
                     orderData.shipping_city,
@@ -163,6 +165,43 @@ const Order = {
                         }
                         callback(null, { message: "Order deleted successfully!" });
                     });
+                });
+            });
+        });
+    },
+
+    findByUserId: (userId, callback) => {
+        const queryOrder = `SELECT * FROM orders WHERE user_id = ?`;
+        const queryOrderItems = `SELECT * FROM order_items WHERE order_id = ?`;
+
+        // Truy vấn danh sách đơn hàng của người dùng
+        db.query(queryOrder, [userId], (err, orderResults) => {
+            if (err) return callback(err);
+
+            // Kiểm tra nếu không có đơn hàng nào
+            if (orderResults.length === 0) {
+                return callback(null, []);
+            }
+
+            // Duyệt qua từng đơn hàng và lấy các mục đơn hàng liên quan
+            const ordersWithItems = [];
+            let processedOrders = 0;
+
+            orderResults.forEach((order) => {
+                db.query(queryOrderItems, [order.id], (err, orderItemsResults) => {
+                    if (err) return callback(err);
+
+                    ordersWithItems.push({
+                        ...order,
+                        order_items: orderItemsResults,
+                    });
+
+                    processedOrders++;
+
+                    // Khi đã xử lý xong tất cả các đơn hàng
+                    if (processedOrders === orderResults.length) {
+                        callback(null, ordersWithItems);
+                    }
                 });
             });
         });

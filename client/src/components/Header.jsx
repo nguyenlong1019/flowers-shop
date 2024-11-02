@@ -19,6 +19,8 @@ const Header = () => {
           <Link to="/flowers">Hoa</Link>
           <Link>Bài viết</Link>
           <Link>Liên hệ</Link>
+          {currentUser && <Link to="/order">Đơn hàng</Link>}
+          
         </div>
         <div className="actions">
           <Link to="/cart"><ShoppingCart /></Link>

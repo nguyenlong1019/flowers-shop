@@ -38,6 +38,7 @@ CREATE TABLE flowers (
 CREATE TABLE orders (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT,
+  recipient_name VARCHAR(255) NOT NULL,
   total_price DECIMAL(10, 2) NOT NULL,
   shipping_address VARCHAR(255) NOT NULL,
   shipping_city VARCHAR(100) NOT NULL,

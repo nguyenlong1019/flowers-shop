@@ -1,7 +1,18 @@
-Tên người nhận, lịch sử đơn hàng 
+Tên người nhận, lịch sử đơn hàng (thêm tên người nhận ở admin (create, update), client)
 
 Cập nhật đơn hàng save không được (Done)
 
-Hủy thanh toán nhưng đặt đơn thành công (do VNPay Return)
-Phí ship fix cứng 30k 
+Hủy thanh toán nhưng đặt đơn thành công (do VNPay Return) (Done)
+Phí ship fix cứng 30k (Done)
 Thêm mới danh mục hoa, cập nhật (Không có lỗi) (Done)
+
+(tên người nhận sửa trang admin: order, create, update)
+tên người nhận sửa client (checkout, orderlist)
+
+Tên người nhận sửa ở database, model create và update, controller 
+get order by username 
+
+
+
+ALTER TABLE orders
+ADD COLUMN recipient_name VARCHAR(255) NOT NULL AFTER user_id;

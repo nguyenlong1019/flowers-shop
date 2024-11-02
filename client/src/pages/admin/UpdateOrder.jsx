@@ -9,6 +9,7 @@ const UpdateOrder = () => {
 
   const [orderData, setOrderData] = useState({
     user_id: '',
+    recipient_name: '',
     total_price: '',
     shipping_address: '',
     shipping_city: '',
@@ -35,6 +36,7 @@ const UpdateOrder = () => {
         
         setOrderData({
           user_id: order.user_id,
+          recipient_name: order.recipient_name,
           total_price: order.total_price,
           shipping_address: order.shipping_address,
           shipping_city: order.shipping_city,
@@ -129,6 +131,17 @@ const UpdateOrder = () => {
               </option>
             ))}
           </select>
+        </div>
+
+        <div className="form-group">
+          <label>Tên người nhận</label>
+          <input
+            type="text"
+            name="recipient_name"
+            value={orderData.recipient_name}
+            onChange={handleOrderChange}
+            required
+          />
         </div>
 
         <div className="form-group">

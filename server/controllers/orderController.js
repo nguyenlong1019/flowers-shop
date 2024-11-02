@@ -3,6 +3,7 @@ import Order from '../models/Order.js';
 const createOrder = (req, res) => {
     const {
         user_id,
+        recipient_name,
         total_price,
         shipping_address,
         shipping_city,
@@ -31,6 +32,7 @@ const createOrder = (req, res) => {
   Order.create(
       {
           user_id,
+          recipient_name,
           total_price,
           shipping_address,
           shipping_city,
@@ -74,6 +76,7 @@ const getOrderById = (req, res) => {
 const updateOrder = (req, res) => {
   const orderId = req.params.id;
   const {
+    recipient_name,
     total_price,
     shipping_address,
     shipping_city,
@@ -95,6 +98,7 @@ const updateOrder = (req, res) => {
   Order.update(
       orderId,
       {
+          recipient_name,
           total_price,
           shipping_address,
           shipping_city,
