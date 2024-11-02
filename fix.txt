@@ -1,0 +1,7 @@
+Tên người nhận, lịch sử đơn hàng 
+
+Cập nhật đơn hàng save không được (Done)
+
+Hủy thanh toán nhưng đặt đơn thành công (do VNPay Return)
+Phí ship fix cứng 30k 
+Thêm mới danh mục hoa, cập nhật (Không có lỗi) (Done)

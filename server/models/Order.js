@@ -117,7 +117,7 @@ const Order = {
                         // Thêm các mục đơn hàng mới
                         const itemsData = orderItems.map((item) => [
                             orderId,
-                            item.id,
+                            item.flower_id,
                             item.quantity,
                             item.price,
                         ]);

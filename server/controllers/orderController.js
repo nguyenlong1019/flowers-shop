@@ -85,6 +85,8 @@ const updateOrder = (req, res) => {
     payment_status, // Cập nhật trạng thái thanh toán
     items, // Các mục đơn hàng mới
   } = req.body;
+  console.log(items);
+  
 
   if (!items || items.length === 0) {
       return res.status(400).json({ message: 'Order items are required' });
@@ -105,6 +107,8 @@ const updateOrder = (req, res) => {
       },
       items,
       (err, result) => {
+          console.log(err);
+          
           if (err) return res.status(500).json({ error: err.message });
           res.status(200).json({ message: "Order updated successfully!" });
       }
