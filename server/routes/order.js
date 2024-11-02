@@ -27,6 +27,8 @@ router.get('/vnpay_return', function (req, res, next) {
         //Kiem tra xem du lieu trong db co hop le hay khong va thong bao ket qua
         // res.render('success', {code: vnp_Params['vnp_ResponseCode']})
         // res.status(200).json({ message: 'Payment successful', code: vnp_Params['vnp_ResponseCode'] });
+        console.log(vnp_Params);
+        
         res.redirect(`http://localhost:3000/payment-success?code=${vnp_Params['vnp_ResponseCode']}&orderId=${vnp_Params['vnp_TxnRef']}`);
     } else{
         // res.render('success', {code: '97'})

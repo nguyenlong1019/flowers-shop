@@ -36,7 +36,7 @@ const Checkout = () => {
   }, [cart]);
 
   const calculateTotal = () => {
-    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 30000);
     setPaymentData(prevData => ({ ...prevData, amount: totalPrice }));
     return totalPrice;
   };
@@ -81,7 +81,6 @@ const Checkout = () => {
       if (paymentType === 'internet_banking') {
         const res = await axios.post('/payment/create_payment_url', paymentData);
         // console.log(res);
-        localStorage.removeItem('cart');
         window.location.href = res.data;
       } else {
         alert("Đặt hàng thành công với phương thức COD!");
@@ -146,6 +145,15 @@ const Checkout = () => {
                 <div className="col col-6" style={{textAlign: 'center'}}>{(item.price * item.quantity).toLocaleString()} đ</div>
               </div>
             ))}
+            <div className="row" style={{borderTop: '1px solid #ddd', padding: '12px 0'}}>
+              <div className="col col-6">Phí vận chuyển</div>
+              <div className="col col-6" style={{textAlign: 'center'}}>30,000 đ</div>
+            </div>
+            <div className="row" style={{borderTop: '1px solid #ddd', padding: '12px 0'}}>
+              <div className="col col-6">Tổng</div>
+              <div className="col col-6" style={{textAlign: 'center', fontWeight: '700'}}></div>
+            </div>
+
           </div>
           
           <div className="form-group">

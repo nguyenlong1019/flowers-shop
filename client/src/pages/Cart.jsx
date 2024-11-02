@@ -127,7 +127,7 @@ const Cart = () => {
                   Shipping 
               </h4>
               <span className="cart-price">
-                  100,000 đ
+                  30,000 đ
               </span>
           </div>
 
@@ -136,7 +136,7 @@ const Cart = () => {
                   Total 
               </h4>
               <span className="cart-price">
-                  {(calculateTotal() + 100000).toLocaleString()} đ
+                  {(calculateTotal() + 30000).toLocaleString()} đ
               </span>
           </div>
 
