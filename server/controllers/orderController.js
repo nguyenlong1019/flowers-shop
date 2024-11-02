@@ -128,4 +128,15 @@ const deleteOrder = (req, res) => {
   });
 };
 
-export {createOrder, getAllOrders, getOrderById, updateOrder, deleteOrder};
+const getOrdersByUserId = (req, res) => {
+  const userId = req.params.userId;  
+
+  Order.findByUserId(userId, (err, orders) => {
+      if (err) return res.status(500).json({ error: err.message });
+      if (orders.length === 0) return res.status(404).json({ message: "No orders found for this user" });
+      
+      res.status(200).json(orders);
+  });
+};
+
+export {createOrder, getAllOrders, getOrderById, updateOrder, deleteOrder, getOrdersByUserId};

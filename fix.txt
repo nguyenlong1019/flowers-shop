@@ -1,4 +1,4 @@
-Tên người nhận, lịch sử đơn hàng (thêm tên người nhận ở admin (create, update), client)
+Tên người nhận, lịch sử đơn hàng (thêm tên người nhận ở admin (create, update), client) (Done)
 
 Cập nhật đơn hàng save không được (Done)
 
@@ -6,11 +6,11 @@ Hủy thanh toán nhưng đặt đơn thành công (do VNPay Return) (Done)
 Phí ship fix cứng 30k (Done)
 Thêm mới danh mục hoa, cập nhật (Không có lỗi) (Done)
 
-(tên người nhận sửa trang admin: order, create, update)
-tên người nhận sửa client (checkout, orderlist)
+(tên người nhận sửa trang admin: order, create, update) (Done)
+tên người nhận sửa client (checkout, orderlist) (Done)
 
-Tên người nhận sửa ở database, model create và update, controller 
-get order by username 
+Tên người nhận sửa ở database, model create và update, controller (done)
+get order by userid (done) 
 
 
 
